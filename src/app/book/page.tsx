@@ -1,0 +1,41 @@
+"use client";
+import React from 'react';
+import InteractiveBookingFlow from '../components/home-components/InteractiveBookingFlow';
+import { FaShieldAlt, FaStar, FaAward, FaLock } from 'react-icons/fa';
+
+export default function BookPage() {
+  return (
+    <div className="bg-slate-50 min-h-screen py-10">
+      
+      {/* Header Banner */}
+      <div className="max-w-4xl mx-auto px-4 text-center mb-6">
+        <span className="text-xs font-black uppercase tracking-widest text-sky-700 bg-sky-100 px-3 py-1 rounded-full border border-sky-200">
+          Seamless Online Booking
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">
+          Book Your Kleanix Clean
+        </h1>
+        <p className="text-slate-600 text-sm max-w-xl mx-auto mt-1">
+          Customise your cleaning package, pick your arrival window, and lock in your price with zero upfront charges.
+        </p>
+
+        {/* Security badges */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-xs font-semibold text-slate-600">
+          <span className="flex items-center gap-1.5">
+            <FaShieldAlt className="text-sky-600" /> Police Checked Cleaners
+          </span>
+          <span className="flex items-center gap-1.5">
+            <FaAward className="text-amber-500" /> 100% Happiness Guarantee
+          </span>
+          <span className="flex items-center gap-1.5">
+            <FaLock className="text-emerald-600" /> No Card Charged Until Done
+          </span>
+        </div>
+      </div>
+
+      {/* Embedded Redux Booking Engine */}
+      <InteractiveBookingFlow />
+
+    </div>
+  );
+}
