@@ -6,6 +6,7 @@ import NavBarComponent from '../components/shared-components/NavBarComponent';
 import { FooterComponent } from '../components/shared-components/FooterComponent';
 import TopAnnouncementBar from '../components/shared-components/TopAnnouncementBar';
 import QuoteModal from '../components/shared-components/QuoteModal';
+import LeaveReviewModal from '../components/shared-components/LeaveReviewModal';
 
 const PageContainer = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const PageContainer = ({ children }: { children: React.ReactNode }) => {
   }, [dispatch]);
 
   return (
-    <div ref={parentDivRef} className="min-h-screen h-screen overflow-y-auto flex flex-col bg-white text-slate-900">
+    <div ref={parentDivRef} className="min-h-screen h-screen overflow-y-auto flex flex-col bg-white text-slate-900 scroll-smooth">
       <TopAnnouncementBar />
       <NavBarComponent />
       <main className="flex-1">
@@ -40,6 +41,7 @@ const PageContainer = ({ children }: { children: React.ReactNode }) => {
       </main>
       <FooterComponent />
       <QuoteModal />
+      <LeaveReviewModal />
     </div>
   );
 };

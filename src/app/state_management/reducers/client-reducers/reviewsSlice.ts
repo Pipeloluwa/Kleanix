@@ -8,6 +8,8 @@ interface ReviewsState {
   serviceFilter: string | 'all';
   averageRating: number;
   totalCount: number;
+  displayReviews: boolean; // Configurable toggle to display reviews and ratings across the site
+  leaveReviewModalOpen: boolean; // Controls the Leave a Review modal popup
 }
 
 const initialState: ReviewsState = {
@@ -15,7 +17,9 @@ const initialState: ReviewsState = {
   ratingFilter: 'all',
   serviceFilter: 'all',
   averageRating: 4.96,
-  totalCount: 524
+  totalCount: 524,
+  displayReviews: true,
+  leaveReviewModalOpen: false
 };
 
 export const reviewsSlice = createSlice({
@@ -27,6 +31,18 @@ export const reviewsSlice = createSlice({
     },
     setServiceFilter: (state, action: PayloadAction<string | 'all'>) => {
       state.serviceFilter = action.payload;
+    },
+    setDisplayReviews: (state, action: PayloadAction<boolean>) => {
+      state.displayReviews = action.payload;
+    },
+    toggleDisplayReviews: (state) => {
+      state.displayReviews = !state.displayReviews;
+    },
+    openLeaveReviewModal: (state) => {
+      state.leaveReviewModalOpen = true;
+    },
+    closeLeaveReviewModal: (state) => {
+      state.leaveReviewModalOpen = false;
     },
     addCustomerReview: (state, action: PayloadAction<Omit<CustomerReview, 'id' | 'date' | 'verified'>>) => {
       const newReview: CustomerReview = {
@@ -41,5 +57,14 @@ export const reviewsSlice = createSlice({
   }
 });
 
-export const { setRatingFilter, setServiceFilter, addCustomerReview } = reviewsSlice.actions;
+export const {
+  setRatingFilter,
+  setServiceFilter,
+  setDisplayReviews,
+  toggleDisplayReviews,
+  openLeaveReviewModal,
+  closeLeaveReviewModal,
+  addCustomerReview
+} = reviewsSlice.actions;
+
 export default reviewsSlice.reducer;

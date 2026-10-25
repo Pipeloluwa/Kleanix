@@ -1,11 +1,14 @@
 "use client";
 import React from 'react';
-import { FaPhoneAlt, FaEnvelope, FaClock, FaTag, FaCheckCircle } from 'react-icons/fa';
-import { useAppDispatch } from '@/app/state_management/hooks';
+import Link from 'next/link';
+import { FaPhoneAlt, FaTag, FaCheckCircle, FaStar, FaQuestionCircle } from 'react-icons/fa';
+import { useAppDispatch, useAppSelector } from '@/app/state_management/hooks';
 import { openQuoteModal } from '@/app/state_management/reducers/client-reducers/uiSlice';
+import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
 
 export const TopAnnouncementBar = () => {
   const dispatch = useAppDispatch();
+  const displayReviews = useAppSelector((state) => state.reviews.displayReviews);
 
   return (
     <aside aria-label="Announcement bar" className="bg-sky-950 text-slate-100 text-xs py-2 px-4 border-b border-sky-900/60 transition-colors">
@@ -25,20 +28,36 @@ export const TopAnnouncementBar = () => {
           </span>
         </div>
 
-        {/* Right: Contact & Quick Links */}
-        <div className="flex items-center gap-4 text-xs">
-          <div className="hidden sm:flex items-center gap-1.5 text-slate-300">
-            <FaClock className="text-sky-400" />
-            <span>7am - 8pm (7 Days)</span>
-          </div>
-
-          <a
-            href="mailto:hello@kleanix.com.au"
-            className="hidden md:flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
+        {/* Right: Contact, FAQ & Review Links */}
+        <div className="flex items-center gap-4 text-xs flex-wrap justify-center">
+          
+          <Link
+            href="/faq"
+            className="hidden sm:flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
           >
-            <FaEnvelope className="text-sky-400" />
-            <span>hello@kleanix.com.au</span>
-          </a>
+            <FaQuestionCircle className="text-sky-400 text-[11px]" />
+            <span>FAQ & Help</span>
+          </Link>
+
+          {displayReviews && (
+            <Link
+              href="/reviews"
+              className="hidden sm:flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
+            >
+              <FaStar className="text-amber-400 text-[10px]" />
+              <span>Reviews (4.9★)</span>
+            </Link>
+          )}
+
+          <button
+            type="button"
+            onClick={() => dispatch(openLeaveReviewModal())}
+            className="text-amber-300 hover:text-amber-200 font-semibold flex items-center gap-1 transition-colors"
+          >
+            <span>Rate Your Clean</span>
+          </button>
+
+          <span className="text-slate-600 hidden sm:inline">|</span>
 
           <a
             href="tel:1300346034"
@@ -47,13 +66,6 @@ export const TopAnnouncementBar = () => {
             <FaPhoneAlt className="text-[10px]" />
             <span>1300 34 60 34</span>
           </a>
-
-          <button
-            onClick={() => dispatch(openQuoteModal())}
-            className="text-amber-400 hover:text-amber-300 underline font-semibold text-xs ml-1"
-          >
-            Instant Estimate
-          </button>
         </div>
 
       </div>

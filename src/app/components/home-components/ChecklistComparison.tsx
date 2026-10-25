@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { FaCheck, FaTimes, FaInfoCircle, FaShieldAlt } from 'react-icons/fa';
+import { fadeInUp } from '@/app/animation/animationVariants';
 
 interface ChecklistItem {
   task: string;
@@ -59,7 +61,13 @@ export const ChecklistComparison = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-12 space-y-3"
+        >
           <span className="text-xs font-black uppercase tracking-widest text-sky-600 bg-sky-100/80 px-3 py-1 rounded-full">
             Transparent Comparison
           </span>
@@ -69,7 +77,7 @@ export const ChecklistComparison = () => {
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             Wondering what is covered in each clean? Explore our comprehensive checklist to pick the exact service tier your home needs.
           </p>
-        </div>
+        </motion.div>
 
         {/* Room Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
@@ -89,7 +97,13 @@ export const ChecklistComparison = () => {
         </div>
 
         {/* Comparison Table */}
-        <div className="overflow-x-auto rounded-3xl border border-slate-200 shadow-md">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="overflow-x-auto rounded-3xl border border-slate-200 shadow-md"
+        >
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-900 text-white border-b border-slate-800">
@@ -183,7 +197,7 @@ export const ChecklistComparison = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
 
         {/* Footer CTAs */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-slate-900 text-white">

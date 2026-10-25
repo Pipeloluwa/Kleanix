@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi2';
 import Link from 'next/link';
+import { fadeInUp, scaleIn } from '@/app/animation/animationVariants';
 
 interface TransformationItem {
   id: string;
@@ -53,7 +55,13 @@ export const BeforeAfterShowcase = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-12 space-y-3"
+        >
           <span className="text-xs font-black uppercase tracking-widest text-sky-400 bg-sky-950 px-3 py-1 rounded-full border border-sky-800">
             Real Perth Results
           </span>
@@ -63,7 +71,7 @@ export const BeforeAfterShowcase = () => {
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Drag the comparison slider to reveal how our hospital-grade cleaning treatments restore neglected appliances, bathrooms, and carpets.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tab Selector */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
@@ -86,7 +94,13 @@ export const BeforeAfterShowcase = () => {
         </div>
 
         {/* Interactive Comparison Widget */}
-        <div className="max-w-4xl mx-auto bg-slate-800/80 rounded-3xl border border-slate-700 p-4 sm:p-8 shadow-2xl">
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto bg-slate-800/80 rounded-3xl border border-slate-700 p-4 sm:p-8 shadow-2xl"
+        >
           
           <div className="relative h-[340px] sm:h-[450px] rounded-2xl overflow-hidden select-none">
             
@@ -150,7 +164,7 @@ export const BeforeAfterShowcase = () => {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

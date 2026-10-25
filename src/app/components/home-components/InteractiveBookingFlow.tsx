@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'motion/react';
 import { useAppSelector, useAppDispatch } from '@/app/state_management/hooks';
 import {
   setStep,
@@ -18,6 +19,7 @@ import {
   submitBookingThunk,
   resetBooking
 } from '@/app/state_management/reducers/client-reducers/bookingSlice';
+import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
 import {
   DUMMY_SERVICES,
   DUMMY_EXTRAS,
@@ -42,9 +44,11 @@ import {
   FaKey,
   FaCar,
   FaPaw,
-  FaPrint
+  FaPrint,
+  FaStar
 } from 'react-icons/fa';
 import { CleanFrequency, BookingCustomer } from '@/app/state_management/types';
+import { stepVariants } from '@/app/animation/animationVariants';
 
 const TIME_SLOTS = [
   '08:00 AM - 11:00 AM',
@@ -66,6 +70,42 @@ export const InteractiveBookingFlow = () => {
   const booking = useAppSelector((state) => state.booking);
 
   const [couponInput, setCouponInput] = useState('');
+  const flowTopRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTop = () => {
+    // 1. Reset standard window
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // 2. Reset PageContainer scroll position
+    const scrollContainers = document.querySelectorAll('.overflow-y-auto');
+    scrollContainers.forEach((container) => {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // 3. Ensure booking container starts at the top
+    if (flowTopRef.current) {
+      flowTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [booking.currentStep, booking.status]);
+
+  const handleNextStep = () => {
+    dispatch(nextStep());
+    scrollToTop();
+  };
+
+  const handlePrevStep = () => {
+    dispatch(prevStep());
+    scrollToTop();
+  };
+
+  const handleSetStep = (stepNumber: number) => {
+    dispatch(setStep(stepNumber));
+    scrollToTop();
+  };
 
   const currentService = DUMMY_SERVICES.find((s) => s.id === booking.serviceId) || DUMMY_SERVICES[0];
 
@@ -78,6 +118,7 @@ export const InteractiveBookingFlow = () => {
 
   const handleSubmit = () => {
     dispatch(submitBookingThunk());
+    scrollToTop();
   };
 
   // If successfully booked, render confirmation screen
@@ -140,6 +181,25 @@ export const InteractiveBookingFlow = () => {
           </div>
         </div>
 
+        {/* Rate & Review Prompt */}
+        <div className="my-6 p-5 rounded-2xl bg-amber-50 border border-amber-200 text-center max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-left">
+            <p className="font-extrabold text-amber-950 text-sm flex items-center gap-1.5">
+              <FaStar className="text-amber-500" /> Have you used Kleanix before?
+            </p>
+            <p className="text-xs text-amber-800 mt-0.5">
+              Share your feedback to help us maintain Perth&apos;s #1 cleaning standard.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => dispatch(openLeaveReviewModal())}
+            className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all whitespace-nowrap active:scale-95"
+          >
+            Rate & Review Clean
+          </button>
+        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
@@ -151,7 +211,10 @@ export const InteractiveBookingFlow = () => {
           </button>
 
           <button
-            onClick={() => dispatch(resetBooking())}
+            onClick={() => {
+              dispatch(resetBooking());
+              scrollToTop();
+            }}
             className="w-full sm:w-auto px-8 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-colors"
           >
             Book Another Clean
@@ -169,7 +232,7 @@ export const InteractiveBookingFlow = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div ref={flowTopRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
       
       {/* Step Indicator Header */}
       <div className="max-w-3xl mx-auto mb-10">
@@ -190,7 +253,7 @@ export const InteractiveBookingFlow = () => {
           ].map((item) => (
             <div key={item.step} className="relative z-10 flex flex-col items-center">
               <button
-                onClick={() => dispatch(setStep(item.step))}
+                onClick={() => handleSetStep(item.step)}
                 disabled={item.step > booking.currentStep + 1}
                 className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                   booking.currentStep === item.step
@@ -217,15 +280,22 @@ export const InteractiveBookingFlow = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Form Area */}
-        <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-          
-          {/* ================= STEP 1: SERVICE & ROOMS ================= */}
-          {booking.currentStep === 1 && (
-            <div className="space-y-8 animate-in fade-in duration-200">
-              <div>
-                <h3 className="text-2xl font-black text-slate-900">Choose Your Cleaning Service</h3>
-                <p className="text-sm text-slate-500 mt-1">Select the type of clean that fits your requirement</p>
-              </div>
+        <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm overflow-hidden">
+          <AnimatePresence mode="wait">
+            {/* ================= STEP 1: SERVICE & ROOMS ================= */}
+            {booking.currentStep === 1 && (
+              <motion.div
+                key="step-1"
+                variants={stepVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="space-y-8"
+              >
+                <div>
+                  <h3 className="text-2xl font-black text-slate-900">Choose Your Cleaning Service</h3>
+                  <p className="text-sm text-slate-500 mt-1">Select the type of clean that fits your requirement</p>
+                </div>
 
               {/* Service Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -347,19 +417,26 @@ export const InteractiveBookingFlow = () => {
               <div className="flex justify-end pt-4">
                 <button
                   type="button"
-                  onClick={() => dispatch(nextStep())}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2"
+                  onClick={handleNextStep}
+                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <span>Continue to Extras</span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* ================= STEP 2: ADD-ON EXTRAS ================= */}
           {booking.currentStep === 2 && (
-            <div className="space-y-6 animate-in fade-in duration-200">
+            <motion.div
+              key="step-2"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="space-y-6"
+            >
               <div>
                 <h3 className="text-2xl font-black text-slate-900">Customise With Add-On Extras</h3>
                 <p className="text-sm text-slate-500 mt-1">Select any additional deep detailing tasks for your property</p>
@@ -401,8 +478,8 @@ export const InteractiveBookingFlow = () => {
               <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 <button
                   type="button"
-                  onClick={() => dispatch(prevStep())}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2"
+                  onClick={handlePrevStep}
+                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -410,19 +487,26 @@ export const InteractiveBookingFlow = () => {
 
                 <button
                   type="button"
-                  onClick={() => dispatch(nextStep())}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2"
+                  onClick={handleNextStep}
+                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <span>Continue to Schedule</span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* ================= STEP 3: SCHEDULE & ACCESS ================= */}
           {booking.currentStep === 3 && (
-            <div className="space-y-6 animate-in fade-in duration-200">
+            <motion.div
+              key="step-3"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="space-y-6"
+            >
               <div>
                 <h3 className="text-2xl font-black text-slate-900">Select Date & Property Access</h3>
                 <p className="text-sm text-slate-500 mt-1">Tell us when to arrive and how to access the property</p>
@@ -589,8 +673,8 @@ export const InteractiveBookingFlow = () => {
               <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 <button
                   type="button"
-                  onClick={() => dispatch(prevStep())}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2"
+                  onClick={handlePrevStep}
+                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -598,19 +682,26 @@ export const InteractiveBookingFlow = () => {
 
                 <button
                   type="button"
-                  onClick={() => dispatch(nextStep())}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2"
+                  onClick={handleNextStep}
+                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <span>Continue to Review</span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* ================= STEP 4: CONTACT & FINAL REVIEW ================= */}
           {booking.currentStep === 4 && (
-            <div className="space-y-6 animate-in fade-in duration-200">
+            <motion.div
+              key="step-4"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="space-y-6"
+            >
               <div>
                 <h3 className="text-2xl font-black text-slate-900">Contact Details & Final Confirmation</h3>
                 <p className="text-sm text-slate-500 mt-1">Review your service summary before reserving your clean</p>
@@ -735,12 +826,27 @@ export const InteractiveBookingFlow = () => {
                 </div>
               </div>
 
+              {/* Rate & Review Previous Clean Prompt */}
+              <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/60 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1.5 text-amber-900">
+                  <FaStar className="text-amber-500" />
+                  <span>Used Kleanix before? Share your experience with other Perth locals.</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => dispatch(openLeaveReviewModal())}
+                  className="font-bold text-amber-800 hover:text-amber-900 underline whitespace-nowrap"
+                >
+                  Rate Cleaner
+                </button>
+              </div>
+
               {/* Buttons */}
               <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 <button
                   type="button"
-                  onClick={() => dispatch(prevStep())}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2"
+                  onClick={handlePrevStep}
+                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -750,7 +856,7 @@ export const InteractiveBookingFlow = () => {
                   type="button"
                   disabled={booking.status === 'submitting'}
                   onClick={handleSubmit}
-                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-sm shadow-xl shadow-emerald-600/30 flex items-center gap-2 disabled:opacity-50"
+                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-sm shadow-xl shadow-emerald-600/30 flex items-center gap-2 disabled:opacity-50 transition-transform active:scale-95"
                 >
                   {booking.status === 'submitting' ? (
                     <>
@@ -765,8 +871,9 @@ export const InteractiveBookingFlow = () => {
                   )}
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
 
         </div>
 

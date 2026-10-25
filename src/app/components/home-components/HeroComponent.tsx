@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { motion } from 'motion/react';
 import { useAppSelector, useAppDispatch } from '@/app/state_management/hooks';
 import {
   updateQuoteService,
@@ -29,6 +30,7 @@ import {
   FaLock
 } from 'react-icons/fa';
 import { CleanFrequency } from '@/app/state_management/types';
+import { fadeInUp, fadeInDown, scaleIn, staggerContainer, staggerItem } from '@/app/animation/animationVariants';
 
 export const HeroComponent = () => {
   const router = useRouter();
@@ -52,13 +54,18 @@ export const HeroComponent = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-slate-50 pt-10 pb-20 lg:pt-16 lg:pb-28">
       {/* Decorative background glows */}
-      <div className="absolute top-0 right-1/4 -z-10 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl" />
-      <div className="absolute top-1/3 left-0 -z-10 w-80 h-80 bg-cyan-200/30 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-1/4 -z-10 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 -z-10 w-80 h-80 bg-cyan-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Trust Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-6 animate-in fade-in duration-500">
+        <motion.div
+          variants={fadeInDown}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap items-center justify-center gap-3 mb-6"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-slate-800 text-xs font-bold border border-slate-200 shadow-sm">
             <span className="flex text-amber-500">
               <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
@@ -76,10 +83,15 @@ export const HeroComponent = () => {
             <FaAward className="text-emerald-600" />
             <span>100% Bond Back Guarantee</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Hero Headings */}
-        <div className="text-center max-w-4xl mx-auto space-y-4 mb-12">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          className="text-center max-w-4xl mx-auto space-y-4 mb-12"
+        >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
             Spotless Spaces. <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-sky-600 via-cyan-600 to-sky-700 bg-clip-text text-transparent">
@@ -89,10 +101,15 @@ export const HeroComponent = () => {
           <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
             Perth&apos;s most reliable cleaning platform. Professional, fully insured, police-checked cleaners equipped with premium supplies. Book online in 60 seconds.
           </p>
-        </div>
+        </motion.div>
 
         {/* HERO CALCULATOR WIDGET (Cleaner Co Inspired Instant Quote Engine) */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-8 relative">
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-8 relative"
+        >
           
           <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
             <div className="flex items-center gap-2 text-sky-700 font-bold text-sm sm:text-base">
@@ -259,7 +276,7 @@ export const HeroComponent = () => {
             </span>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
