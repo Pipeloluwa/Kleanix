@@ -71,14 +71,14 @@ export default function SuburbsPage() {
           </div>
         </div>
 
-        <div className="mt-12 p-8 rounded-3xl bg-sky-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-12 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-sky-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1">
-            <h4 className="text-lg font-bold">Don&apos;t see your suburb listed?</h4>
+            <h4 className="text-base sm:text-lg font-bold">Don&apos;t see your suburb listed?</h4>
             <p className="text-xs text-slate-400">We frequently accommodate outer Perth suburbs upon request.</p>
           </div>
           <a
             href="tel:1300346034"
-            className="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-2 transition-colors whitespace-nowrap"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors whitespace-nowrap"
           >
             <FaPhoneAlt className="text-xs" />
             <span>Call Concierge: 1300 34 60 34</span>

@@ -51,13 +51,13 @@ export default function PricingPage() {
         </div>
 
         {/* Dynamic Calculator Card */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-10 mb-16">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl p-4 sm:p-8 lg:p-10 mb-16">
           <div className="flex items-center gap-3 pb-6 border-b border-slate-100 mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl">
+            <div className="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl flex-shrink-0">
               <FaCalculator />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-slate-900">Custom Price Calculator</h2>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">Custom Price Calculator</h2>
               <p className="text-xs text-slate-500">Select your specifications for an instant accurate estimate</p>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function PricingPage() {
               <select
                 value={quote.serviceId}
                 onChange={(e) => dispatch(updateQuoteService(e.target.value))}
-                className="w-full text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-3"
+                className="w-full text-base sm:text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-2.5 sm:p-3"
               >
                 {DUMMY_SERVICES.map((s) => (
                   <option key={s.id} value={s.id}>{s.title}</option>
@@ -81,7 +81,7 @@ export default function PricingPage() {
               <select
                 value={quote.bedrooms}
                 onChange={(e) => dispatch(updateQuoteBedrooms(Number(e.target.value)))}
-                className="w-full text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-3"
+                className="w-full text-base sm:text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-2.5 sm:p-3"
               >
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <option key={n} value={n}>{n} {n === 1 ? 'Bed' : 'Beds'}</option>
@@ -94,7 +94,7 @@ export default function PricingPage() {
               <select
                 value={quote.bathrooms}
                 onChange={(e) => dispatch(updateQuoteBathrooms(Number(e.target.value)))}
-                className="w-full text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-3"
+                className="w-full text-base sm:text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-2.5 sm:p-3"
               >
                 {[1, 2, 3, 4, 5].map((n) => (
                   <option key={n} value={n}>{n} {n === 1 ? 'Bath' : 'Baths'}</option>
@@ -107,7 +107,7 @@ export default function PricingPage() {
               <select
                 value={quote.frequency}
                 onChange={(e) => dispatch(updateQuoteFrequency(e.target.value as CleanFrequency))}
-                className="w-full text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-3"
+                className="w-full text-base sm:text-sm font-semibold rounded-xl border border-slate-300 bg-slate-50 p-2.5 sm:p-3"
               >
                 {FREQUENCY_OPTIONS.map((f) => (
                   <option key={f.id} value={f.id}>{f.name} {f.discountPercentage > 0 ? `(-${f.discountPercentage}%)` : ''}</option>
@@ -117,11 +117,11 @@ export default function PricingPage() {
           </div>
 
           {/* Calculator Output */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="bg-slate-900 text-white rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
               <span className="text-xs uppercase font-extrabold text-sky-400">Calculated Estimate</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-black text-white">${quote.estimatedTotal}</span>
+              <div className="flex items-baseline gap-2 justify-center sm:justify-start">
+                <span className="text-3xl sm:text-4xl font-black text-white">${quote.estimatedTotal}</span>
                 <span className="text-xs text-slate-400">AUD (GST Included &bull; ~{quote.estimatedHours} hrs)</span>
               </div>
               {quote.discountSaved > 0 && (
@@ -145,7 +145,7 @@ export default function PricingPage() {
           <h2 className="text-2xl font-black text-slate-900 text-center mb-8">Service Package Rate Card</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {DUMMY_SERVICES.slice(0, 3).map((service) => (
-              <div key={service.id} className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm flex flex-col justify-between">
+              <div key={service.id} className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-sm flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-black uppercase tracking-wider text-sky-600">{service.category}</span>
@@ -186,7 +186,7 @@ export default function PricingPage() {
         </div>
 
         {/* Add-on Extras Rate Menu */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm mb-16">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-sm mb-16">
           <h3 className="text-xl font-black text-slate-900 mb-2">Optional Add-On Extras Rate Menu</h3>
           <p className="text-xs text-slate-500 mb-6">Add any of these specialized tasks to your booking with a single click</p>
 

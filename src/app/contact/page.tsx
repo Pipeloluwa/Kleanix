@@ -42,9 +42,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left: Contact Info */}
-          <div className="lg:col-span-5 bg-slate-900 text-white rounded-3xl p-8 space-y-8 shadow-xl">
+          <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 space-y-8 shadow-xl">
             <div>
-              <h2 className="text-2xl font-black">Get in Touch Directly</h2>
+              <h2 className="text-xl sm:text-2xl font-black">Get in Touch Directly</h2>
               <p className="text-xs text-slate-400 mt-1">Our customer concierge is available 7 days a week.</p>
             </div>
 
@@ -104,8 +104,8 @@ export default function ContactPage() {
           </div>
 
           {/* Right: Contact Form */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-            <h2 className="text-2xl font-black text-slate-900 mb-2">Send Us A Message</h2>
+          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-sm">
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">Send Us A Message</h2>
             <p className="text-xs text-slate-500 mb-6">Fill out the form below and we will get back to you shortly.</p>
 
             {submitted ? (
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     placeholder="e.g. David Lawson"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
 
@@ -137,7 +137,7 @@ export default function ContactPage() {
                       placeholder="david@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                     />
                   </div>
 
@@ -148,7 +148,7 @@ export default function ContactPage() {
                       placeholder="0400 000 000"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                     />
                   </div>
                 </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                     placeholder="Provide details about your property size, preferred service, or specific enquiry..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-3 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
 

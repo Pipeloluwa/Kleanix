@@ -96,15 +96,20 @@ export const ChecklistComparison = () => {
           ))}
         </div>
 
+        {/* Mobile Swipe Hint */}
+        <p className="sm:hidden text-center text-[11px] text-slate-500 mb-2 font-medium flex items-center justify-center gap-1">
+          <span>&larr;</span> Swipe sideways to compare packages <span>&rarr;</span>
+        </p>
+
         {/* Comparison Table */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="overflow-x-auto rounded-3xl border border-slate-200 shadow-md"
+          className="overflow-x-auto rounded-2xl sm:rounded-3xl border border-slate-200 shadow-md"
         >
-          <table className="w-full text-left border-collapse">
+          <table className="w-full min-w-[620px] text-left border-collapse">
             <thead>
               <tr className="bg-slate-900 text-white border-b border-slate-800">
                 <th className="py-5 px-6 font-bold text-sm tracking-wide w-2/5">

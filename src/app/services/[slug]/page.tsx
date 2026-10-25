@@ -140,7 +140,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
         </div>
 
         {/* Highlights Bar */}
-        <div className="mt-12 bg-sky-950 text-white rounded-3xl p-8 border border-sky-900">
+        <div className="mt-12 bg-sky-950 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-sky-900">
           <h3 className="text-xl font-bold mb-4 text-sky-300">Key Highlights of This Package</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
             {service.highlights.map((h, i) => (
@@ -151,9 +151,9 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
             ))}
           </div>
 
-          <div className="mt-8 pt-6 border-t border-sky-900/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-8 pt-6 border-t border-sky-900/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <FaAward className="text-amber-400 text-2xl" />
+              <FaAward className="text-amber-400 text-2xl flex-shrink-0" />
               <div>
                 <p className="font-bold text-sm">Backed by our 100% Happiness Guarantee</p>
                 <p className="text-xs text-slate-400">If anything is missed, we return within 24 hours to make it right.</p>
@@ -163,7 +163,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
             <button
               type="button"
               onClick={handleBookNow}
-              className="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs shadow-md transition-colors whitespace-nowrap"
+              className="w-full sm:w-auto text-center px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs shadow-md transition-colors whitespace-nowrap"
             >
               Select Date & Book
             </button>

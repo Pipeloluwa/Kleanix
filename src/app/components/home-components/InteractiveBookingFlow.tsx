@@ -274,13 +274,35 @@ export const InteractiveBookingFlow = () => {
           ))}
 
         </div>
+
+        {/* Mobile Step Title Pill */}
+        <div className="sm:hidden text-center mt-3">
+          <span className="text-[11px] font-extrabold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200 shadow-xs">
+            Step {booking.currentStep} of 4: {['Service & Rooms', 'Add-on Extras', 'Schedule & Access', 'Review & Confirm'][booking.currentStep - 1]}
+          </span>
+        </div>
       </div>
 
       {/* Main Layout Grid: Steps (Left) + Order Summary (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Form Area */}
-        <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm overflow-hidden">
+        <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 lg:p-8 shadow-sm overflow-hidden">
+
+          {/* Mobile Quick Estimate Banner (Visible on screens < lg so mobile users see their live total without scrolling down) */}
+          <div className="lg:hidden flex items-center justify-between p-3.5 mb-6 rounded-2xl bg-gradient-to-r from-slate-900 to-sky-950 text-white text-xs shadow-md">
+            <div>
+              <p className="text-[10px] text-slate-400 uppercase font-semibold">Estimated Total</p>
+              <p className="text-xl font-black text-white">${booking.finalTotal} <span className="text-xs font-normal text-sky-300">AUD</span></p>
+            </div>
+            <div className="text-right">
+              <span className="text-[11px] font-bold text-sky-300 bg-sky-900/80 px-2 py-0.5 rounded-full border border-sky-700">
+                {currentService.title}
+              </span>
+              <p className="text-[10px] text-slate-400 mt-0.5">{booking.bedrooms} Bed &bull; {booking.bathrooms} Bath</p>
+            </div>
+          </div>
+
           <AnimatePresence mode="wait">
             {/* ================= STEP 1: SERVICE & ROOMS ================= */}
             {booking.currentStep === 1 && (
@@ -290,7 +312,7 @@ export const InteractiveBookingFlow = () => {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="space-y-8"
+                className="space-y-6 sm:space-y-8"
               >
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">Choose Your Cleaning Service</h3>
@@ -337,13 +359,13 @@ export const InteractiveBookingFlow = () => {
                     </label>
                     <span className="text-sm font-black text-sky-600">{booking.bedrooms} Bed{booking.bedrooms > 1 ? 's' : ''}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-2xl border border-slate-200">
+                  <div className="flex items-center gap-1 sm:gap-1.5 bg-slate-50 p-1 sm:p-1.5 rounded-2xl border border-slate-200">
                     {[1, 2, 3, 4, 5, 6].map((num) => (
                       <button
                         key={num}
                         type="button"
                         onClick={() => dispatch(setBedrooms(num))}
-                        className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
+                        className={`flex-1 py-2 px-1 rounded-xl text-xs font-bold transition-all ${
                           booking.bedrooms === num
                             ? 'bg-sky-600 text-white shadow-sm'
                             : 'text-slate-600 hover:bg-slate-200'
@@ -363,13 +385,13 @@ export const InteractiveBookingFlow = () => {
                     </label>
                     <span className="text-sm font-black text-sky-600">{booking.bathrooms} Bath{booking.bathrooms > 1 ? 's' : ''}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-2xl border border-slate-200">
+                  <div className="flex items-center gap-1 sm:gap-1.5 bg-slate-50 p-1 sm:p-1.5 rounded-2xl border border-slate-200">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <button
                         key={num}
                         type="button"
                         onClick={() => dispatch(setBathrooms(num))}
-                        className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
+                        className={`flex-1 py-2 px-1 rounded-xl text-xs font-bold transition-all ${
                           booking.bathrooms === num
                             ? 'bg-sky-600 text-white shadow-sm'
                             : 'text-slate-600 hover:bg-slate-200'

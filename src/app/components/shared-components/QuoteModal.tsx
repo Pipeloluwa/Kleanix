@@ -55,22 +55,22 @@ export const QuoteModal = () => {
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl w-full p-6 sm:p-8 z-10 border border-slate-100 my-8">
+      <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-xl w-full p-4 sm:p-6 lg:p-8 z-10 border border-slate-100 my-8 max-h-[90vh] overflow-y-auto">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center flex-shrink-0">
               <FaCalculator className="text-lg" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-slate-900">Instant Price Estimate</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900">Instant Price Estimate</h3>
               <p className="text-xs text-slate-500">Transparent rates, no hidden fees or travel surcharges</p>
             </div>
           </div>
           <button
             onClick={() => dispatch(closeQuoteModal())}
-            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors flex-shrink-0"
           >
             <FaTimes />
           </button>
@@ -104,18 +104,18 @@ export const QuoteModal = () => {
           </div>
 
           {/* Bedrooms & Bathrooms */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Bedrooms: {quote.bedrooms}
               </label>
-              <div className="flex items-center gap-1.5 bg-slate-50 p-1 rounded-xl border border-slate-200">
+              <div className="flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <button
                     key={num}
                     type="button"
                     onClick={() => dispatch(updateQuoteBedrooms(num))}
-                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`flex-1 py-1.5 px-0.5 rounded-lg text-xs font-bold transition-all text-center ${
                       quote.bedrooms === num
                         ? 'bg-sky-600 text-white shadow-sm'
                         : 'text-slate-600 hover:bg-slate-200'
@@ -131,13 +131,13 @@ export const QuoteModal = () => {
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Bathrooms: {quote.bathrooms}
               </label>
-              <div className="flex items-center gap-1.5 bg-slate-50 p-1 rounded-xl border border-slate-200">
+              <div className="flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200">
                 {[1, 2, 3, 4].map((num) => (
                   <button
                     key={num}
                     type="button"
                     onClick={() => dispatch(updateQuoteBathrooms(num))}
-                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`flex-1 py-1.5 px-0.5 rounded-lg text-xs font-bold transition-all text-center ${
                       quote.bathrooms === num
                         ? 'bg-sky-600 text-white shadow-sm'
                         : 'text-slate-600 hover:bg-slate-200'
@@ -155,7 +155,7 @@ export const QuoteModal = () => {
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Clean Frequency
             </label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {FREQUENCY_OPTIONS.map((freq) => (
                 <button
                   key={freq.id}
@@ -188,7 +188,7 @@ export const QuoteModal = () => {
             <select
               value={quote.suburb}
               onChange={(e) => dispatch(updateQuoteSuburb(e.target.value))}
-              className="w-full text-sm rounded-xl border border-slate-200 bg-slate-50 p-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="w-full text-base sm:text-sm rounded-xl border border-slate-200 bg-slate-50 p-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
             >
               {DUMMY_SUBURBS.map((sub) => (
                 <option key={sub.postcode} value={`${sub.name} (${sub.postcode})`}>
@@ -199,8 +199,8 @@ export const QuoteModal = () => {
           </div>
 
           {/* Pricing Result Card */}
-          <div className="bg-gradient-to-br from-sky-900 to-slate-900 text-white rounded-2xl p-5 shadow-inner">
-            <div className="flex items-end justify-between">
+          <div className="bg-gradient-to-br from-sky-900 to-slate-900 text-white rounded-2xl p-4 sm:p-5 shadow-inner">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
               <div>
                 <p className="text-xs font-semibold text-sky-300 uppercase tracking-wider">Estimated Total (GST Incl.)</p>
                 <div className="flex items-baseline gap-2 mt-1">
@@ -209,15 +209,15 @@ export const QuoteModal = () => {
                 </div>
               </div>
               {quote.discountSaved > 0 && (
-                <div className="text-right">
-                  <span className="inline-block bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                <div className="sm:text-right">
+                  <span className="inline-block bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
                     You Save ${quote.discountSaved}
                   </span>
                 </div>
               )}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-sky-800/80 flex items-center justify-between text-xs text-slate-300">
+            <div className="mt-4 pt-3 border-t border-sky-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] sm:text-xs text-slate-300">
               <span className="flex items-center gap-1.5">
                 <FaShieldAlt className="text-sky-400" /> Police Checked & Insured
               </span>

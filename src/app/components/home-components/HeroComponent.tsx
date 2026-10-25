@@ -108,15 +108,15 @@ export const HeroComponent = () => {
           variants={scaleIn}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-8 relative"
+          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-4 sm:p-6 lg:p-8 relative"
         >
           
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 pb-4 border-b border-slate-100 mb-6">
             <div className="flex items-center gap-2 text-sky-700 font-bold text-sm sm:text-base">
               <FaBolt className="text-amber-500" />
               <span>Instant Online Estimate & Fast Booking</span>
             </div>
-            <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+            <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1 self-start sm:self-auto">
               <FaLock className="text-[10px]" /> No Payment Required Now
             </span>
           </div>
@@ -261,7 +261,7 @@ export const HeroComponent = () => {
           </div>
 
           {/* Micro Benefits Strip */}
-          <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center sm:text-left text-xs text-slate-600 font-medium">
+          <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-center sm:text-left text-[11px] sm:text-xs text-slate-600 font-medium">
             <span className="flex items-center gap-1.5 justify-center sm:justify-start">
               <FaCheckCircle className="text-emerald-500 flex-shrink-0" /> No Lock-in Contracts
             </span>

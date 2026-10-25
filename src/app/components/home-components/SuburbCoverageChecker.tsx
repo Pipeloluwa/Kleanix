@@ -67,16 +67,16 @@ export const SuburbCoverageChecker = () => {
                 placeholder="Enter Perth suburb or postcode (e.g. South Perth, 6000, Fremantle)..."
                 value={searchQuery}
                 onChange={(e) => dispatch(setSearchQuery(e.target.value))}
-                className="w-full pl-11 pr-4 py-3 text-sm text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none font-medium"
+                className="w-full pl-11 pr-4 py-3 text-base sm:text-sm text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none font-medium"
               />
             </div>
             <button
               type="submit"
               disabled={isSearching}
-              className="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 flex-shrink-0"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 sm:gap-2 flex-shrink-0"
             >
               {isSearching ? <FaSpinner className="animate-spin" /> : <FaSearch />}
-              <span>Check Suburb</span>
+              <span>Check<span className="hidden sm:inline">&nbsp;Suburb</span></span>
             </button>
           </form>
 
@@ -97,31 +97,31 @@ export const SuburbCoverageChecker = () => {
 
         {/* Search Results Display */}
         {searchResult && (
-          <div className="max-w-xl mx-auto bg-white rounded-3xl border-2 border-emerald-500/40 p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-start justify-between">
+          <div className="max-w-xl mx-auto bg-white rounded-2xl sm:rounded-3xl border-2 border-emerald-500/40 p-4 sm:p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2">
                   <FaCheckCircle className="text-emerald-600" /> Service Available Today
                 </span>
-                <h3 className="text-2xl font-black text-slate-900">{searchResult.name} (WA {searchResult.postcode})</h3>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">{searchResult.name} (WA {searchResult.postcode})</h3>
                 <p className="text-xs text-slate-500 font-medium">{searchResult.region} Service Zone</p>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right flex sm:block items-center justify-between border-t sm:border-t-0 pt-2 sm:pt-0 border-slate-100">
                 <p className="text-xs text-slate-400">Next Slot:</p>
-                <p className="text-sm font-extrabold text-sky-600 flex items-center gap-1 justify-end">
+                <p className="text-sm font-extrabold text-sky-600 flex items-center gap-1 sm:justify-end">
                   <FaClock className="text-xs" />
                   <span>{searchResult.nextAvailableSlot}</span>
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <div className="mt-4 sm:mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <span className="text-xs text-slate-600 font-medium">
                 No travel surcharges apply to this postcode.
               </span>
               <button
                 onClick={() => handleBookInSuburb(searchResult.name, searchResult.postcode)}
-                className="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-md flex items-center gap-1.5 transition-colors"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 transition-colors"
               >
                 <span>Book This Area</span>
                 <FaArrowRight className="text-[10px]" />
@@ -132,7 +132,7 @@ export const SuburbCoverageChecker = () => {
 
         {/* Not Found State */}
         {notFound && (
-          <div className="max-w-xl mx-auto bg-white rounded-3xl border border-amber-300 p-6 shadow-md text-center space-y-3">
+          <div className="max-w-xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-amber-300 p-4 sm:p-6 shadow-md text-center space-y-3">
             <p className="text-sm font-bold text-slate-800">
               Can&apos;t find an automated match for &ldquo;{searchQuery}&rdquo;?
             </p>

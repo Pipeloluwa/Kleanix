@@ -183,17 +183,17 @@ export const NavBarComponent = () => {
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex sm:hidden items-center gap-2">
+          {/* Mobile & Tablet Hamburger Navigation Button */}
+          <div className="flex lg:hidden items-center gap-2">
             <Link
               href="/book"
-              className="text-xs font-bold text-white bg-sky-600 px-3 py-2 rounded-lg shadow-sm"
+              className="sm:hidden text-xs font-bold text-white bg-gradient-to-r from-sky-600 to-cyan-600 px-3.5 py-2 rounded-xl shadow-sm"
             >
               Book
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+              className="p-2.5 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none transition-colors border border-slate-200"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}

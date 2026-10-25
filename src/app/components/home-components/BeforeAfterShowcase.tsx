@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi2';
@@ -49,6 +49,19 @@ const TRANSFORMATIONS: TransformationItem[] = [
 export const BeforeAfterShowcase = () => {
   const [activeItem, setActiveItem] = useState<TransformationItem>(TRANSFORMATIONS[0]);
   const [sliderPos, setSliderPos] = useState<number>(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   return (
     <section className="py-20 bg-slate-900 text-white overflow-hidden">
@@ -74,7 +87,7 @@ export const BeforeAfterShowcase = () => {
         </motion.div>
 
         {/* Tab Selector */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
           {TRANSFORMATIONS.map((item) => (
             <button
               key={item.id}
@@ -82,7 +95,7 @@ export const BeforeAfterShowcase = () => {
                 setActiveItem(item);
                 setSliderPos(50);
               }}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all ${
                 activeItem.id === item.id
                   ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30'
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -99,10 +112,10 @@ export const BeforeAfterShowcase = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto bg-slate-800/80 rounded-3xl border border-slate-700 p-4 sm:p-8 shadow-2xl"
+          className="max-w-4xl mx-auto bg-slate-800/80 rounded-2xl sm:rounded-3xl border border-slate-700 p-3 sm:p-8 shadow-2xl"
         >
           
-          <div className="relative h-[340px] sm:h-[450px] rounded-2xl overflow-hidden select-none">
+          <div ref={containerRef} className="relative h-[270px] sm:h-[420px] rounded-xl sm:rounded-2xl overflow-hidden select-none">
             
             {/* After Image (Full background) */}
             <img
@@ -110,8 +123,8 @@ export const BeforeAfterShowcase = () => {
               alt="After Cleaning"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <span className="absolute bottom-4 right-4 bg-emerald-600/90 backdrop-blur-sm text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider z-10 shadow-md">
-              After: Spotless Kleanix Clean
+            <span className="absolute bottom-3 right-3 bg-emerald-600/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 rounded-full uppercase tracking-wider z-10 shadow-md">
+              After: Spotless Clean
             </span>
 
             {/* Before Image (Clipped on top by sliderPos %) */}
@@ -122,10 +135,10 @@ export const BeforeAfterShowcase = () => {
               <img
                 src={activeItem.beforeImg}
                 alt="Before Cleaning"
-                className="absolute inset-0 w-full h-full object-cover max-w-none"
-                style={{ width: '100%', minWidth: '700px' }}
+                className="absolute inset-0 h-full object-cover max-w-none"
+                style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
               />
-              <span className="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur-sm text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              <span className="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                 Before: Built-up Grime
               </span>
             </div>
@@ -135,7 +148,7 @@ export const BeforeAfterShowcase = () => {
               className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-20 cursor-ew-resize flex items-center justify-center -translate-x-1/2"
               style={{ left: `${sliderPos}%` }}
             >
-              <div className="w-9 h-9 rounded-full bg-white text-slate-900 shadow-xl flex items-center justify-center text-xs font-extrabold">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white text-slate-900 shadow-xl flex items-center justify-center text-xs font-extrabold">
                 &harr;
               </div>
             </div>

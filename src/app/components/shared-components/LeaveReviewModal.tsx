@@ -66,22 +66,22 @@ export const LeaveReviewModal = () => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="relative bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 sm:p-8 z-10 border border-slate-100 my-8"
+          className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-lg w-full p-4 sm:p-6 lg:p-8 z-10 border border-slate-100 my-8 max-h-[90vh] overflow-y-auto"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-lg">
+              <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-lg flex-shrink-0">
                 <FaStar />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900">Rate & Review Your Clean</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900">Rate & Review Your Clean</h3>
                 <p className="text-xs text-slate-500">Your feedback helps us maintain Perth&apos;s highest standard</p>
               </div>
             </div>
             <button
               onClick={() => dispatch(closeLeaveReviewModal())}
-              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors"
+              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors flex-shrink-0"
             >
               <FaTimes />
             </button>
@@ -135,18 +135,18 @@ export const LeaveReviewModal = () => {
                   placeholder="e.g. Lisa Davies"
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
-                  className="w-full text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
               </div>
 
               {/* Suburb & Service Grid */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-bold text-slate-700 mb-1">Perth Suburb</label>
                   <select
                     value={suburb}
                     onChange={(e) => setSuburb(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                   >
                     {DUMMY_SUBURBS.map((s) => (
                       <option key={s.postcode} value={s.name}>{s.name}</option>
@@ -159,7 +159,7 @@ export const LeaveReviewModal = () => {
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                   >
                     {DUMMY_SERVICES.map((srv) => (
                       <option key={srv.id} value={srv.title}>{srv.title}</option>
@@ -177,22 +177,22 @@ export const LeaveReviewModal = () => {
                   placeholder="Tell us about the cleaner's punctuality, attention to detail, shower grout, kitchen..."
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  className="w-full text-base sm:text-sm rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-2 flex gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => dispatch(closeLeaveReviewModal())}
-                  className="w-1/3 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50"
+                  className="w-full sm:w-1/3 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="w-2/3 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2"
+                  className="w-full sm:w-2/3 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2"
                 >
                   <FaPaperPlane className="text-xs" />
                   <span>Post Verified Review</span>
