@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
@@ -26,6 +26,17 @@ export const NavBarComponent = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const closeMobile = () => setMobileMenuOpen(false);
 
@@ -222,7 +233,7 @@ export const NavBarComponent = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl flex flex-col z-50 overflow-y-auto"
+              className="fixed inset-y-0 right-0 max-w-[85vw] sm:max-w-xs w-full bg-white shadow-2xl flex flex-col z-50 overflow-y-auto"
             >
               <div className="p-4 border-b border-slate-100 flex items-center justify-between">
                 <LogoComponent size="sm" />

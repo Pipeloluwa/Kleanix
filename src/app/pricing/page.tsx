@@ -203,7 +203,7 @@ export default function PricingPage() {
         </div>
 
         {/* Frequency Discounts */}
-        <div className="p-8 rounded-3xl bg-gradient-to-r from-sky-950 to-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-sky-950 to-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">Recurring Cleaning Savings</span>
             <h3 className="text-xl font-bold">Save up to 15% on Scheduled Cleans</h3>
@@ -211,7 +211,7 @@ export default function PricingPage() {
           </div>
           <Link
             href="/book"
-            className="px-8 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm shadow-md whitespace-nowrap transition-colors"
+            className="w-full md:w-auto text-center px-8 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm shadow-md whitespace-nowrap transition-colors"
           >
             Start Recurring Plan
           </Link>

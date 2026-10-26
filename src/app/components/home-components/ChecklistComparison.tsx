@@ -205,8 +205,8 @@ export const ChecklistComparison = () => {
         </motion.div>
 
         {/* Footer CTAs */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-slate-900 text-white">
-          <div className="flex items-center gap-3">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-slate-900 text-white text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <FaShieldAlt className="text-sky-400 text-2xl flex-shrink-0" />
             <div>
               <p className="font-bold text-sm">Need a specialized task not listed?</p>
@@ -215,7 +215,7 @@ export const ChecklistComparison = () => {
           </div>
           <Link
             href="/book"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 text-white font-bold text-sm shadow-md whitespace-nowrap"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 text-white font-bold text-sm shadow-md whitespace-nowrap text-center"
           >
             Start Customized Booking
           </Link>

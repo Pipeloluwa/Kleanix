@@ -63,9 +63,9 @@ export const HeroComponent = () => {
           variants={fadeInDown}
           initial="hidden"
           animate="visible"
-          className="flex flex-wrap items-center justify-center gap-3 mb-6"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 text-center"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-slate-800 text-xs font-bold border border-slate-200 shadow-sm">
+          <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-white text-slate-800 text-xs font-bold border border-slate-200 shadow-sm max-w-full text-center">
             <span className="flex text-amber-500">
               <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
             </span>
@@ -73,12 +73,12 @@ export const HeroComponent = () => {
             <span className="text-slate-500 font-normal">on Google (520+ Reviews)</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100/80 text-sky-900 text-xs font-bold border border-sky-200 shadow-sm">
+          <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-sky-100/80 text-sky-900 text-xs font-bold border border-sky-200 shadow-sm max-w-full text-center">
             <FaShieldAlt className="text-sky-600" />
             <span>100% Police Checked Cleaners</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-900 text-xs font-bold border border-emerald-200 shadow-sm">
+          <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-900 text-xs font-bold border border-emerald-200 shadow-sm max-w-full text-center">
             <FaAward className="text-emerald-600" />
             <span>100% Bond Back Guarantee</span>
           </div>
@@ -110,12 +110,12 @@ export const HeroComponent = () => {
           className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200/90 p-4 sm:p-6 lg:p-8 relative"
         >
           
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 pb-4 border-b border-slate-100 mb-6">
-            <div className="flex items-center gap-2 text-sky-700 font-bold text-sm sm:text-base">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-2.5 pb-4 border-b border-slate-100 mb-6">
+            <div className="flex items-center justify-center sm:justify-start gap-2 text-sky-700 font-bold text-sm sm:text-base">
               <FaBolt className="text-amber-500" />
               <span>Instant Online Estimate & Fast Booking</span>
             </div>
-            <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1 self-start sm:self-auto">
+            <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center justify-center gap-1 self-center sm:self-auto">
               <FaLock className="text-[10px]" /> No Payment Required Now
             </span>
           </div>

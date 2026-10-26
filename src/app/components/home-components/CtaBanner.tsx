@@ -16,7 +16,7 @@ export const CtaBanner = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
         
         {/* Discount badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-black uppercase tracking-wider animate-pulse-subtle">
+        <div className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] sm:text-xs font-black uppercase tracking-wider animate-pulse-subtle max-w-full text-center flex-wrap">
           <FaTag className="text-amber-400" />
           <span>New Customer Special: 15% OFF First Clean with code &ldquo;KLEAN15&rdquo;</span>
         </div>

@@ -59,8 +59,8 @@ export default function AboutPage() {
                 className="w-full h-[400px] object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-slate-100 max-w-xs">
-              <p className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+            <div className="sm:absolute sm:-bottom-6 sm:-left-6 mt-4 sm:mt-0 bg-white rounded-2xl p-4 shadow-xl border border-slate-100 max-w-xs mx-auto sm:mx-0 text-center sm:text-left">
+              <p className="text-xs font-bold text-slate-900 flex items-center justify-center sm:justify-start gap-1.5">
                 <FaShieldAlt className="text-sky-600 text-sm" /> 100% Police Checked
               </p>
               <p className="text-[11px] text-slate-500 mt-1">

@@ -23,8 +23,8 @@ export const CustomerReviewsComponent = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Configuration Bar (Allows toggling review display on/off) */}
-        <div className="flex flex-wrap items-center justify-between gap-3 py-2.5 px-4 mb-10 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 py-3 px-4 mb-10 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-center sm:text-left">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <FaSlidersH className="text-slate-400 text-xs" />
             <span className="font-semibold text-slate-600">Review Display Status:</span>
             <span className={`px-2 py-0.5 rounded-full font-bold text-[11px] ${
@@ -34,7 +34,7 @@ export const CustomerReviewsComponent = () => {
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => dispatch(toggleDisplayReviews())}
               className="text-xs font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 transition-all shadow-sm active:scale-95"

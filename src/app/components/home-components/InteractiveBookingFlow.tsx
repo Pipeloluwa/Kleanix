@@ -169,9 +169,9 @@ export const InteractiveBookingFlow = () => {
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-200 text-xs text-slate-500 flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-              <FaShieldAlt className="text-emerald-500" /> 100% Satisfaction Bond Guarantee Active
+          <div className="pt-3 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <span className="flex items-center justify-center sm:justify-start gap-1.5 text-emerald-700 font-semibold">
+              <FaShieldAlt className="text-emerald-500 flex-shrink-0" /> 100% Satisfaction Bond Guarantee Active
             </span>
             <span>No upfront card charge</span>
           </div>
@@ -179,9 +179,9 @@ export const InteractiveBookingFlow = () => {
 
         {/* Rate & Review Prompt */}
         <div className="my-6 p-5 rounded-2xl bg-amber-50 border border-amber-200 text-center max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <p className="font-extrabold text-amber-950 text-sm flex items-center gap-1.5">
-              <FaStar className="text-amber-500" /> Have you used Kleanix before?
+          <div className="text-center sm:text-left">
+            <p className="font-extrabold text-amber-950 text-sm flex items-center justify-center sm:justify-start gap-1.5">
+              <FaStar className="text-amber-500 flex-shrink-0" /> Have you used Kleanix before?
             </p>
             <p className="text-xs text-amber-800 mt-0.5">
               Share your feedback to help us maintain Perth&apos;s #1 cleaning standard.
@@ -190,7 +190,7 @@ export const InteractiveBookingFlow = () => {
           <button
             type="button"
             onClick={() => dispatch(openLeaveReviewModal())}
-            className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all whitespace-nowrap active:scale-95"
+            className="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all whitespace-nowrap active:scale-95"
           >
             Rate & Review Clean
           </button>
@@ -436,7 +436,7 @@ export const InteractiveBookingFlow = () => {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
+                  className="w-full sm:w-auto px-5 sm:px-8 py-2.5 sm:py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 transition-transform active:scale-95"
                 >
                   <span>Continue to Extras</span>
                   <FaArrowRight className="text-xs" />
@@ -493,11 +493,11 @@ export const InteractiveBookingFlow = () => {
                 })}
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+              <div className="flex items-center justify-between gap-3 sm:gap-4 pt-6 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 flex-shrink-0 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -506,9 +506,9 @@ export const InteractiveBookingFlow = () => {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
+                  className="px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-sky-600/20 flex items-center justify-center gap-1.5 sm:gap-2 transition-transform active:scale-95 text-center flex-1 sm:flex-initial"
                 >
-                  <span>Continue to Schedule</span>
+                  <span>Continue<span className="hidden sm:inline">&nbsp;to Schedule</span></span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </div>
@@ -688,11 +688,11 @@ export const InteractiveBookingFlow = () => {
               </div>
 
               {/* Buttons */}
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+              <div className="flex items-center justify-between gap-3 sm:gap-4 pt-6 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 flex-shrink-0 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -701,9 +701,9 @@ export const InteractiveBookingFlow = () => {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 flex items-center gap-2 transition-transform active:scale-95"
+                  className="px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-sky-600/20 flex items-center justify-center gap-1.5 sm:gap-2 transition-transform active:scale-95 text-center flex-1 sm:flex-initial"
                 >
-                  <span>Continue to Review</span>
+                  <span>Continue<span className="hidden sm:inline">&nbsp;to Review</span></span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </div>
@@ -845,26 +845,26 @@ export const InteractiveBookingFlow = () => {
               </div>
 
               {/* Rate & Review Previous Clean Prompt */}
-              <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/60 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-1.5 text-amber-900">
-                  <FaStar className="text-amber-500" />
+              <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/60 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-center sm:text-left">
+                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-900">
+                  <FaStar className="text-amber-500 flex-shrink-0" />
                   <span>Used Kleanix before? Share your experience with other Perth locals.</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => dispatch(openLeaveReviewModal())}
-                  className="font-bold text-amber-800 hover:text-amber-900 underline whitespace-nowrap"
+                  className="font-bold text-amber-800 hover:text-amber-900 underline whitespace-nowrap self-center sm:self-auto"
                 >
                   Rate Cleaner
                 </button>
               </div>
 
               {/* Buttons */}
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+              <div className="flex items-center justify-between gap-3 sm:gap-4 pt-6 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 flex-shrink-0 transition-transform active:scale-95"
                 >
                   <FaArrowLeft className="text-xs" />
                   <span>Back</span>
@@ -874,17 +874,17 @@ export const InteractiveBookingFlow = () => {
                   type="button"
                   disabled={booking.status === 'submitting'}
                   onClick={handleSubmit}
-                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-sm shadow-xl shadow-emerald-600/30 flex items-center gap-2 disabled:opacity-50 transition-transform active:scale-95"
+                  className="px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-1.5 sm:gap-2 disabled:opacity-50 transition-transform active:scale-95 text-center flex-1 sm:flex-initial"
                 >
                   {booking.status === 'submitting' ? (
                     <>
-                      <FaSpinner className="animate-spin text-sm" />
-                      <span>Securing Your Booking...</span>
+                      <FaSpinner className="animate-spin text-xs sm:text-sm" />
+                      <span>Securing...</span>
                     </>
                   ) : (
                     <>
-                      <span>Confirm & Reserve Booking</span>
-                      <FaCheckCircle className="text-sm" />
+                      <span>Confirm & Reserve<span className="hidden sm:inline">&nbsp;Booking</span></span>
+                      <FaCheckCircle className="text-xs sm:text-sm" />
                     </>
                   )}
                 </button>
