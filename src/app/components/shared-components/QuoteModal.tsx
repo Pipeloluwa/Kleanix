@@ -84,8 +84,8 @@ export const QuoteModal = () => {
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Select Cleaning Service
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {DUMMY_SERVICES.slice(0, 6).map((service) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-[190px] overflow-y-auto pr-1">
+              {DUMMY_SERVICES.map((service) => (
                 <button
                   key={service.id}
                   type="button"

@@ -87,7 +87,7 @@ export const NavBarComponent = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
-                    className="absolute top-full -left-8 w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-100 py-3.5 px-3 z-50"
+                    className="absolute top-full -left-8 w-[370px] bg-white rounded-3xl shadow-2xl border border-slate-100 py-3.5 px-3 z-50 max-h-[80vh] overflow-y-auto"
                   >
                     <div className="px-3 py-1.5 border-b border-slate-100 mb-1.5 flex items-center justify-between">
                       <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Perth Cleaning Services</p>

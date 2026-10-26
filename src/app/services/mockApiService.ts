@@ -233,6 +233,82 @@ export const DUMMY_SERVICES: CleaningService[] = [
         items: ['Removal of oven racks and trays for soaking', 'Non-caustic paste applied to chamber', 'Glass door removed and cleaned between panes', 'Stove dials and exterior polished']
       }
     ]
+  },
+  {
+    id: 'gardening',
+    title: 'Gardening & Lawn Maintenance',
+    slug: 'gardening-lawn-care',
+    subtitle: 'Precision lawn mowing, hedge shaping, weed control & green waste disposal',
+    shortDesc: 'Comprehensive outdoor garden care for Perth homes, keeping lawns lush, edges crisp, and garden beds completely weed-free.',
+    longDesc: 'Transform your outdoor living spaces with professional groundskeeping. Our police-checked gardening teams arrive equipped with commercial mowers, precision line trimmers, hedge clippers, and green waste disposal bags to maintain immaculate Perth yards.',
+    category: 'outdoor',
+    basePrice: 140,
+    priceNote: 'Starting from $140 per garden session',
+    badge: 'Popular Outdoor Add-on',
+    popular: true,
+    estimatedHours: '2 - 4 hrs',
+    heroImage: 'https://images.unsplash.com/photo-1592417817098-8f3d69102a56?auto=format&fit=crop&w=800&q=80',
+    icon: 'leaf',
+    highlights: [
+      'Commercial mower cut with clean border edging & path blowing',
+      'Shrub pruning, hedge sculpting & deadwood trimming',
+      'Targeted weed removal & organic garden bed mulching',
+      'Removal & council-compliant disposal of all green waste',
+      'High-pressure cleaning of garden pathways & brick pavers',
+      'Reticulation and sprinkler head operation check'
+    ],
+    checklist: [
+      {
+        room: 'Lawn & Turf Care',
+        items: ['Precision height lawn mowing', 'Clean mechanical line edging along fences and walkways', 'Blow clearing all grass clippings from hard surfaces', 'Organic fertilizer application upon request']
+      },
+      {
+        room: 'Garden Beds & Shrubs',
+        items: ['Manual weed pulling from roots in all garden beds', 'Pruning hedges, decorative shrubs and rose bushes', 'Turnover and aeration of garden soil', 'Application of protective bark or mulch']
+      },
+      {
+        room: 'Patios & Hardscapes',
+        items: ['Sweeping and leaf collection on driveways and patios', 'Weed treatment between paving stones and brick seams', 'Eco-safe outdoor cobweb clearing around eaves', 'Full removal of green waste cuttings']
+      }
+    ]
+  },
+  {
+    id: 'forensic',
+    title: 'Forensic & Biohazard Remediation',
+    slug: 'forensic-cleaning',
+    subtitle: 'Certified trauma, biohazard decontamination, hoarder & unattended death sanitisation',
+    shortDesc: 'Discreet, compassionate, and certified biohazard decontamination adhering to stringent WA Health and EPA Australia safety standards.',
+    longDesc: 'When traumatic, hazardous, or extreme contamination events occur, our licensed forensic restoration crew provides compassionate, rapid-response remediation. Using hospital-grade biological neutralizers, HEPA air scrubbers, and industrial ozone fogging, we safely restore properties to 100% biological safety with full documentation for insurance providers and landlords.',
+    category: 'specialized',
+    basePrice: 450,
+    priceNote: 'Starting from $450 with Certificate of Sanitisation',
+    badge: 'WA Certified Biohazard',
+    popular: false,
+    estimatedHours: '4 - 8 hrs',
+    heroImage: 'https://images.unsplash.com/photo-1584634731339-252c581abfc5?auto=format&fit=crop&w=800&q=80',
+    icon: 'shield-virus',
+    highlights: [
+      '24/7 Rapid dispatch across all Perth metropolitan areas',
+      'Trauma, unattended death, and crime scene remediation',
+      'Extreme hoarder property clearing & deep sanitisation',
+      'Clinical disposal of hazardous biological materials & sharps',
+      'Industrial ozone fogging & hydroxyl air deodorization',
+      'Formal Certificate of Decontamination for insurance & real estate'
+    ],
+    checklist: [
+      {
+        room: 'Containment & Hazard Removal',
+        items: ['Establishment of negative air pressure & containment barriers', 'Safe removal and disposal of contaminated porous furnishings', 'Biological fluid identification and extraction using specialized enzyme agents', 'Licensed clinical biohazard waste containerization']
+      },
+      {
+        room: 'Deep Decontamination & Sterilization',
+        items: ['Hospital-grade sporicidal wiping of all non-porous surfaces', 'Sub-floor and structural timber antimicrobial treatment', 'HEPA-filtered air scrubbers to eliminate airborne pathogens', 'Deep tile, grout, and structural seal sanitisation']
+      },
+      {
+        room: 'Deodorization & Clearance Testing',
+        items: ['Thermal fogging to penetrate micro-cavities and neutralize odors', 'Multi-stage ozone purification treatment', 'ATP bioluminescence surface verification test', 'Issuance of official Decontamination Certificate']
+      }
+    ]
   }
 ];
 
@@ -244,7 +320,11 @@ export const DUMMY_EXTRAS: ExtraServiceItem[] = [
   { id: 'carpetSteam', name: 'Carpet Steam (2 Bedrooms)', price: 90, icon: 'steam', description: 'Industrial hot water allergen extraction', estimatedMinutes: 50 },
   { id: 'walls', name: 'Spot Cleaning Wall Scuffs', price: 65, icon: 'wall', description: 'Targeted scuff mark removal on high-traffic walls', estimatedMinutes: 40 },
   { id: 'cabinets', name: 'Inside Kitchen Cabinets', price: 55, icon: 'cabinet', description: 'Cupboards emptied, wiped and re-organized', estimatedMinutes: 45 },
-  { id: 'laundry', name: 'Ironing & Wash Load (1 Hour)', price: 40, icon: 'laundry', description: 'Bedding or clothing washed, dried or ironed', estimatedMinutes: 60 }
+  { id: 'laundry', name: 'Ironing & Wash Load (1 Hour)', price: 40, icon: 'laundry', description: 'Bedding or clothing washed, dried or ironed', estimatedMinutes: 60 },
+  { id: 'lawnMowing', name: 'Lawn Mowing & Edging', price: 70, icon: 'mower', description: 'Front and back lawn mowing, mechanical edging & blower sweep', estimatedMinutes: 45 },
+  { id: 'weeding', name: 'Garden Bed Weeding (1 Hr)', price: 55, icon: 'plant', description: 'Hand-weeding, soil aeration & dead foliage clearing', estimatedMinutes: 50 },
+  { id: 'highPressureOutdoor', name: 'High-Pressure Driveway Wash', price: 85, icon: 'pressure', description: 'Industrial pressure wash for pavers, driveways or outdoor entertaining areas', estimatedMinutes: 60 },
+  { id: 'antimicrobialFog', name: 'Antimicrobial Fogging Treatment', price: 95, icon: 'fog', description: 'Whole-property aerosol hospital-grade pathogen & viral neutralization', estimatedMinutes: 40 }
 ];
 
 export const FREQUENCY_OPTIONS: FrequencyOption[] = [
@@ -374,8 +454,8 @@ export function calculateCleaningPrice(params: {
   const service = DUMMY_SERVICES.find(s => s.id === params.serviceId) || DUMMY_SERVICES[0];
   
   // Base room increments
-  const bedroomRate = params.serviceId === 'vacate' ? 45 : params.serviceId === 'deep' ? 35 : 25;
-  const bathroomRate = params.serviceId === 'vacate' ? 50 : params.serviceId === 'deep' ? 40 : 30;
+  const bedroomRate = params.serviceId === 'forensic' ? 80 : params.serviceId === 'vacate' ? 45 : params.serviceId === 'deep' ? 35 : params.serviceId === 'gardening' ? 20 : 25;
+  const bathroomRate = params.serviceId === 'forensic' ? 90 : params.serviceId === 'vacate' ? 50 : params.serviceId === 'deep' ? 40 : params.serviceId === 'gardening' ? 15 : 30;
   
   // Calculate raw base: 1 bed / 1 bath included in service.basePrice
   const extraBeds = Math.max(0, params.bedrooms - 1);
@@ -417,7 +497,7 @@ export function calculateCleaningPrice(params: {
   const gstPortion = Math.round((finalSubtotal / 11) * 100) / 100;
   
   // Estimated hours
-  const baseHours = params.serviceId === 'vacate' ? 4.5 : params.serviceId === 'deep' ? 3.5 : 2.5;
+  const baseHours = params.serviceId === 'forensic' ? 5.5 : params.serviceId === 'vacate' ? 4.5 : params.serviceId === 'deep' ? 3.5 : params.serviceId === 'gardening' ? 3.0 : 2.5;
   const roomHours = (extraBeds * 0.4) + (extraBaths * 0.5);
   const totalHours = Math.round((baseHours + roomHours) * 10) / 10;
 

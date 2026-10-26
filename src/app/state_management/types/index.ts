@@ -1,4 +1,4 @@
-export type ServiceCategory = 'residential' | 'commercial' | 'specialized';
+export type ServiceCategory = 'residential' | 'commercial' | 'specialized' | 'outdoor';
 
 export interface RoomInclusion {
   room: string;

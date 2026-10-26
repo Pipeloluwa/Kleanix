@@ -142,8 +142,8 @@ export default function PricingPage() {
         {/* Base Rate Cards */}
         <div className="mb-16">
           <h2 className="text-2xl font-black text-slate-900 text-center mb-8">Service Package Rate Card</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {DUMMY_SERVICES.slice(0, 3).map((service) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DUMMY_SERVICES.map((service) => (
               <div key={service.id} className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-sm flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

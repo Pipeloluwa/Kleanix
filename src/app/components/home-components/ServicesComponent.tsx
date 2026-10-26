@@ -22,7 +22,8 @@ export const ServicesComponent = () => {
     { label: 'All Services', value: 'all' },
     { label: 'Residential Cleaning', value: 'residential' },
     { label: 'Commercial & Office', value: 'commercial' },
-    { label: 'Specialized Treatments', value: 'specialized' }
+    { label: 'Specialized & Forensic', value: 'specialized' },
+    { label: 'Gardening & Outdoor', value: 'outdoor' }
   ];
 
   const filteredServices = activeCategory === 'all'
