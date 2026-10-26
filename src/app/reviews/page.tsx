@@ -3,7 +3,7 @@ import React from 'react';
 import CustomerReviewsComponent from '../components/home-components/CustomerReviewsComponent';
 import { useAppDispatch } from '@/app/state_management/hooks';
 import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
-import { FaStar, FaGoogle, FaShieldAlt } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 export default function ReviewsPage() {
   const dispatch = useAppDispatch();

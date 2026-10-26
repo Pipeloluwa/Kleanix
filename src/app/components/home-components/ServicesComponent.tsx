@@ -10,10 +10,7 @@ import {
   FaCheck,
   FaArrowRight,
   FaClock,
-  FaShieldAlt,
-  FaHome,
-  FaBuilding,
-  FaStar
+  FaShieldAlt
 } from 'react-icons/fa';
 
 export const ServicesComponent = () => {

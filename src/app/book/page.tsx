@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import InteractiveBookingFlow from '../components/home-components/InteractiveBookingFlow';
-import { FaShieldAlt, FaStar, FaAward, FaLock } from 'react-icons/fa';
+import { FaShieldAlt, FaAward, FaLock } from 'react-icons/fa';
 
 export default function BookPage() {
   return (

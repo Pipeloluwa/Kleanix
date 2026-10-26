@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { FaChevronDown, FaRegQuestionCircle, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaChevronDown, FaPhoneAlt } from 'react-icons/fa';
 import Link from 'next/link';
 
 interface FaqItem {

@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/app/state_management/hooks';
 import {
   setSearchQuery,
-  checkSuburbThunk,
-  resetSuburbSearch
+  checkSuburbThunk
 } from '@/app/state_management/reducers/client-reducers/suburbsSlice';
 import { updateCustomerField } from '@/app/state_management/reducers/client-reducers/bookingSlice';
 import {

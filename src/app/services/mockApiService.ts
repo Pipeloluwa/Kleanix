@@ -397,7 +397,7 @@ export function calculateCleaningPrice(params: {
   const freq = FREQUENCY_OPTIONS.find(f => f.id === params.frequency) || FREQUENCY_OPTIONS[0];
   const freqDiscountAmount = Math.round((rawSubtotal * freq.discountPercentage) / 100);
   
-  let discountedSubtotal = rawSubtotal - freqDiscountAmount;
+  const discountedSubtotal = rawSubtotal - freqDiscountAmount;
   
   // Coupon discount
   let couponDiscount = 0;

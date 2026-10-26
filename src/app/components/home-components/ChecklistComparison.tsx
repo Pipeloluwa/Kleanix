@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { FaCheck, FaTimes, FaInfoCircle, FaShieldAlt } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaShieldAlt } from 'react-icons/fa';
 import { fadeInUp } from '@/app/animation/animationVariants';
 
 interface ChecklistItem {

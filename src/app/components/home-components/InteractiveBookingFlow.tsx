@@ -28,9 +28,6 @@ import {
 } from '@/app/services/mockApiService';
 import {
   FaCheck,
-  FaCalendarAlt,
-  FaClock,
-  FaMapMarkerAlt,
   FaUser,
   FaEnvelope,
   FaPhoneAlt,
@@ -41,7 +38,6 @@ import {
   FaArrowRight,
   FaCheckCircle,
   FaLock,
-  FaKey,
   FaCar,
   FaPaw,
   FaPrint,

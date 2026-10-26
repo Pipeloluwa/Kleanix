@@ -1,6 +1,5 @@
 "use client";
 import React, { use } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import { DUMMY_SERVICES } from '@/app/services/mockApiService';
@@ -11,9 +10,7 @@ import {
   FaArrowRight,
   FaClock,
   FaShieldAlt,
-  FaStar,
   FaCheckCircle,
-  FaPhoneAlt,
   FaAward
 } from 'react-icons/fa';
 

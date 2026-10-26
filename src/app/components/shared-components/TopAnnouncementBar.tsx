@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import { FaPhoneAlt, FaTag, FaCheckCircle, FaStar, FaQuestionCircle } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/app/state_management/hooks';
-import { openQuoteModal } from '@/app/state_management/reducers/client-reducers/uiSlice';
 import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
 
 export const TopAnnouncementBar = () => {

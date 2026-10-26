@@ -25,12 +25,11 @@ import {
   FaCheckCircle,
   FaAward,
   FaArrowRight,
-  FaRegCalendarAlt,
   FaBolt,
   FaLock
 } from 'react-icons/fa';
 import { CleanFrequency } from '@/app/state_management/types';
-import { fadeInUp, fadeInDown, scaleIn, staggerContainer, staggerItem } from '@/app/animation/animationVariants';
+import { fadeInUp, fadeInDown, scaleIn } from '@/app/animation/animationVariants';
 
 export const HeroComponent = () => {
   const router = useRouter();

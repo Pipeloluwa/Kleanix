@@ -9,7 +9,6 @@ import {
   FaClock,
   FaShieldAlt,
   FaStar,
-  FaCheckCircle,
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,

@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { FaShieldAlt, FaAward, FaCheckCircle, FaHeart, FaUsers, FaLeaf, FaArrowRight } from 'react-icons/fa';
+import { FaShieldAlt, FaArrowRight } from 'react-icons/fa';
 
 export default function AboutPage() {
   return (

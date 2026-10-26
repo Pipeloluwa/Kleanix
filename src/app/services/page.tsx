@@ -3,7 +3,6 @@ import React from 'react';
 import ServicesComponent from '../components/home-components/ServicesComponent';
 import ChecklistComparison from '../components/home-components/ChecklistComparison';
 import CtaBanner from '../components/home-components/CtaBanner';
-import { FaShieldAlt } from 'react-icons/fa';
 
 export default function ServicesPage() {
   return (

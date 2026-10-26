@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { BookingState, CleanFrequency, BookingCustomer } from '../../types';
-import { calculateCleaningPrice, mockApiClient, DUMMY_SERVICES } from '../../../services/mockApiService';
+import { calculateCleaningPrice, mockApiClient } from '../../../services/mockApiService';
 
 const initialCustomer: BookingCustomer = {
   fullName: '',

@@ -7,8 +7,7 @@ import {
   updateQuoteService,
   updateQuoteBedrooms,
   updateQuoteBathrooms,
-  updateQuoteFrequency,
-  updateQuoteSuburb
+  updateQuoteFrequency
 } from '@/app/state_management/reducers/client-reducers/quoteSlice';
 import {
   setServiceId,
@@ -16,8 +15,8 @@ import {
   setBathrooms,
   setFrequency
 } from '@/app/state_management/reducers/client-reducers/bookingSlice';
-import { DUMMY_SERVICES, DUMMY_EXTRAS, FREQUENCY_OPTIONS, DUMMY_SUBURBS } from '@/app/services/mockApiService';
-import { FaCheckCircle, FaShieldAlt, FaCalculator, FaTag, FaArrowRight, FaQuestionCircle } from 'react-icons/fa';
+import { DUMMY_SERVICES, DUMMY_EXTRAS, FREQUENCY_OPTIONS } from '@/app/services/mockApiService';
+import { FaCheckCircle, FaCalculator, FaArrowRight } from 'react-icons/fa';
 import { CleanFrequency } from '@/app/state_management/types';
 
 export default function PricingPage() {

@@ -1,8 +1,7 @@
 "use client";
 import React from 'react';
 import SuburbCoverageChecker from '../components/home-components/SuburbCoverageChecker';
-import { FaMapMarkerAlt, FaCheckCircle, FaPhoneAlt, FaShieldAlt } from 'react-icons/fa';
-import Link from 'next/link';
+import { FaMapMarkerAlt, FaCheckCircle, FaPhoneAlt } from 'react-icons/fa';
 
 export default function SuburbsPage() {
   return (

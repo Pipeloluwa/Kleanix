@@ -1,9 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { FaCheckCircle, FaArrowRight } from 'react-icons/fa';
-import { HiSparkles } from 'react-icons/hi2';
-import Link from 'next/link';
 import { fadeInUp, scaleIn } from '@/app/animation/animationVariants';
 
 interface TransformationItem {
