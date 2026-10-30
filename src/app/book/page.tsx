@@ -9,14 +9,14 @@ export default function BookPage() {
       
       {/* Header Banner */}
       <div className="max-w-4xl mx-auto px-4 text-center mb-6">
-        <span className="text-xs font-black uppercase tracking-widest text-sky-700 bg-sky-100 px-3 py-1 rounded-full border border-sky-200">
-          Seamless Online Booking
+        <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-3 py-1 rounded-full border border-sky-200">
+          Professional Cleaning Services
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">
-          Book Your Kleanix Clean
+          Schedule Your Cleaning Service
         </h1>
         <p className="text-slate-600 text-sm max-w-xl mx-auto mt-1">
-          Customise your cleaning package, pick your arrival window, and lock in your price with zero upfront charges.
+          Select your service specifications, choose your preferred arrival window, and confirm your booking with verified professionals.
         </p>
 
         {/* Security badges */}
