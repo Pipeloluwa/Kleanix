@@ -108,7 +108,7 @@ export default function AboutPage() {
       <div className="max-w-5xl mx-auto px-4 py-20 text-center space-y-6">
         <h2 className="text-3xl font-black text-slate-900">Experience The Kleanix Difference Today</h2>
         <p className="text-slate-600 text-sm max-w-lg mx-auto">
-          Book online in 60 seconds. No cards charged until your clean is completed to perfection.
+          Book online with ease. No cards charged until your clean is completed to perfection.
         </p>
         <Link
           href="/book"

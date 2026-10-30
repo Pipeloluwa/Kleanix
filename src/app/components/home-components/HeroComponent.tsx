@@ -53,7 +53,7 @@ export const HeroComponent = () => {
 
         {/* Crisp Headline */}
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-3">
-          Book trusted cleaners in <span className="text-sky-600">60 seconds</span>
+          Book trusted cleaners <span className="text-sky-600">online with ease</span>
         </h1>
         <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto mb-8">
           Flat-rate pricing, vetted professionals, and satisfaction guaranteed. No contracts.

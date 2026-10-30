@@ -89,7 +89,7 @@ export default function PricingPage() {
         <div className="p-6 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="space-y-1">
             <h3 className="text-base font-bold">Ready to book your Perth clean?</h3>
-            <p className="text-xs text-slate-400">Takes under 60 seconds. Flat pricing with full satisfaction guarantee.</p>
+            <p className="text-xs text-slate-400">Book online with ease. Flat pricing with full satisfaction guarantee.</p>
           </div>
           <Link
             href="/book"

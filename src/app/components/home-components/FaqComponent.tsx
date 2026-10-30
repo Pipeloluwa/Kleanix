@@ -11,7 +11,7 @@ interface FaqItem {
 const FAQS: FaqItem[] = [
   {
     question: 'How do I book a cleaning service with Kleanix?',
-    answer: 'Booking is quick and seamless! You can complete your booking directly through our website using our 60-second interactive booking form, or you can call our Perth support team at 1300 34 60 34. We will match you with a police-checked cleaner at your preferred date and time slot.'
+    answer: 'Booking is quick and seamless! You can complete your booking directly through our website using our step-by-step booking form, or you can call our Perth support team at 1300 34 60 34. We will match you with a police-checked cleaner at your preferred date and time slot.'
   },
   {
     question: 'How long does a cleaning appointment take?',

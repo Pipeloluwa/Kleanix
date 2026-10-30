@@ -155,12 +155,12 @@ export const NavBarComponent = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-xl flex flex-col z-50 p-5 space-y-4"
+              className="fixed inset-y-0 right-0 w-1/2 min-w-[200px] max-w-[280px] bg-white shadow-2xl flex flex-col z-50 p-4 space-y-3"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                 <LogoComponent size="sm" />
                 <button onClick={closeMobile} className="p-1 text-slate-500 outline-none">
-                  <FaTimes />
+                  <FaTimes className="text-base" />
                 </button>
               </div>
 

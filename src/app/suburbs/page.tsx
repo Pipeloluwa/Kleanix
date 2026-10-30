@@ -92,7 +92,7 @@ export default function SuburbsPage() {
         <div className="p-6 rounded-2xl bg-sky-50 border border-sky-100 text-center space-y-3">
           <h3 className="font-bold text-slate-900 text-base">Ready to book in your Perth suburb?</h3>
           <p className="text-xs text-slate-600 max-w-md mx-auto">
-            Book online in under a minute. No travel surcharges or hidden call-out fees.
+            Book online anytime. No travel surcharges or hidden call-out fees.
           </p>
           <Link
             href="/book"

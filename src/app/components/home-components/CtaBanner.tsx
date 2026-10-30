@@ -11,7 +11,7 @@ export const CtaBanner = () => {
           Ready for a spotless home?
         </h2>
         <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto">
-          Book online in under 60 seconds. Transparent pricing and guaranteed satisfaction.
+          Book online anytime. Transparent pricing and guaranteed satisfaction.
         </p>
 
         <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
