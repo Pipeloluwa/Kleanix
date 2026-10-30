@@ -66,7 +66,7 @@ export interface BookingState {
   frequency: CleanFrequency;
   date: string;
   timeSlot: string;
-  selectedExtras: string[]; // ExtraServiceItem ids
+  selectedExtras: string[];
   customer: BookingCustomer;
   couponCode: string;
   appliedDiscount: number;
@@ -111,17 +111,22 @@ export interface SuburbCoverage {
   nextAvailableSlot: string;
 }
 
-// User Dashboard & Role Types
-export type UserRole = 'customer' | 'cleaner' | 'admin' | 'superadmin';
+// User & Portal Roles
+export type StaffRole = 'cleaner' | 'admin' | 'superadmin';
 
-export interface DashboardUser {
+export interface StaffAccount {
   id: string;
   name: string;
   email: string;
-  role: UserRole;
-  avatar?: string;
-  phone?: string;
-  suburb?: string;
+  phone: string;
+  role: StaffRole;
+  status: 'active' | 'suspended';
+  suburbAssigned?: string;
+  policeCheckVerified: boolean;
+  insuranceVerified: boolean;
+  joinedDate: string;
+  jobsCompleted?: number;
+  passwordHash?: string;
 }
 
 export interface DashboardBooking {

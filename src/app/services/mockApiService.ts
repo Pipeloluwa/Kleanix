@@ -6,12 +6,12 @@ import {
   BookingState,
   CleanFrequency,
   DashboardBooking,
-  DashboardUser
+  StaffAccount
 } from '../state_management/types';
 
 // ==========================================
 // CORE STREAMLINED CLEANING SERVICES
-// Focused exclusively on residential, deep, bond, and commercial cleaning
+// 4 Focused essential services for simple startup model
 // ==========================================
 
 export const DUMMY_SERVICES: CleaningService[] = [
@@ -19,13 +19,13 @@ export const DUMMY_SERVICES: CleaningService[] = [
     id: 'standard',
     title: 'Standard Home Clean',
     slug: 'standard-clean',
-    subtitle: 'Routine upkeep for a fresh, spotless home',
-    shortDesc: 'Regular cleaning for living areas, bedrooms, kitchen, and bathrooms. Reclaim your free time.',
-    longDesc: 'Our Standard Clean keeps your home consistently fresh. Experienced, police-checked cleaners arrive with professional eco-friendly supplies and HEPA vacuums, systematically refreshing every room.',
+    subtitle: 'Routine maintenance for a spotless household',
+    shortDesc: 'Regular cleaning for living areas, bedrooms, kitchen, and bathrooms.',
+    longDesc: 'Our Standard Clean keeps your home consistently fresh. Experienced, police-checked cleaners arrive with professional supplies and HEPA vacuums, systematically refreshing every room.',
     category: 'residential',
     basePrice: 130,
     priceNote: 'From $130 (1 bed / 1 bath)',
-    badge: 'Most Popular',
+    badge: 'Popular',
     popular: true,
     estimatedHours: '2.5 - 3.5 hrs',
     heroImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
@@ -33,10 +33,9 @@ export const DUMMY_SERVICES: CleaningService[] = [
     highlights: [
       'Dusting all accessible furniture and surfaces',
       'Vacuuming rugs and carpets, mopping hard floors',
-      'Exterior wipedown of kitchen appliances & benches',
+      'Wiping kitchen appliances & counter benches',
       'Scrubbing and sanitizing sinks, showers and toilets',
-      'Emptying bins and replacing liners',
-      'Tidying and making beds'
+      'Emptying bins and replacing fresh liners'
     ],
     checklist: [
       {
@@ -58,12 +57,12 @@ export const DUMMY_SERVICES: CleaningService[] = [
     title: 'Deep Intensive Clean',
     slug: 'deep-clean',
     subtitle: 'Thorough top-to-bottom detail for homes needing extra care',
-    shortDesc: 'An intensive refresh tackling built-up grime, baseboards, grout, and hidden dust.',
+    shortDesc: 'An intensive refresh tackling built-up grime, skirting boards, grout, and hidden dust.',
     longDesc: 'When your home needs a reset, our Deep Clean goes deeper. We wash skirting boards, door frames, light switches, limescale, and vacuum behind moveable furniture.',
     category: 'residential',
     basePrice: 240,
     priceNote: 'From $240 (1 bed / 1 bath)',
-    badge: 'Seasonal Refresh',
+    badge: 'Deep Detail',
     popular: false,
     estimatedHours: '4 - 6 hrs',
     heroImage: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80',
@@ -73,8 +72,7 @@ export const DUMMY_SERVICES: CleaningService[] = [
       'Detailed hand-wiping of all skirting boards & doors',
       'Tile grout descaling in shower & kitchen zones',
       'Cobweb removal and ceiling vent dusting',
-      'Spot cleaning high-touch walls and switch plates',
-      'Deep dusting behind moveable furniture'
+      'Spot cleaning high-touch walls and switch plates'
     ],
     checklist: [
       {
@@ -100,7 +98,7 @@ export const DUMMY_SERVICES: CleaningService[] = [
     longDesc: 'Moving out is stressful enough. Our Vacate Clean meets rigorous property inspection standards. If your property manager flags any cleaning item, we return free of charge.',
     category: 'residential',
     basePrice: 360,
-    priceNote: 'From $360 (Bond Back Guarantee)',
+    priceNote: 'From $360 (Bond Guarantee)',
     badge: '100% Bond Guarantee',
     popular: true,
     estimatedHours: '5 - 8 hrs',
@@ -139,7 +137,7 @@ export const DUMMY_SERVICES: CleaningService[] = [
     category: 'commercial',
     basePrice: 180,
     priceNote: 'From $180 per visit',
-    badge: 'Flexible Hours',
+    badge: 'Workplaces',
     popular: false,
     estimatedHours: '3 - 5 hrs',
     heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
@@ -229,20 +227,63 @@ export const VALID_COUPONS: Record<string, { discountPercent?: number; discountF
 };
 
 // ==========================================
-// MOCK DATA FOR USER JOURNEY DASHBOARDS
-// (Customers, Cleaners, Admins, Super Admin)
+// MOCK DATA FOR ADMIN & SUPER ADMIN PORTAL
 // ==========================================
 
-export const INITIAL_DASHBOARD_USERS: DashboardUser[] = [
-  { id: 'usr-1', name: 'Sarah Jenkins', email: 'sarah.j@gmail.com', role: 'customer', phone: '0412 345 678', suburb: 'South Perth' },
-  { id: 'usr-2', name: 'David Miller', email: 'david.m@outlook.com', role: 'customer', phone: '0423 456 789', suburb: 'Subiaco' },
-  { id: 'usr-3', name: 'Elena Rostova', email: 'elena.clean@kleanix.com.au', role: 'cleaner', phone: '0434 567 890', suburb: 'Perth CBD' },
-  { id: 'usr-4', name: 'Marcus Cole', email: 'marcus.c@kleanix.com.au', role: 'cleaner', phone: '0445 678 901', suburb: 'Fremantle' },
-  { id: 'usr-5', name: 'Jessica Taylor', email: 'ops.jessica@kleanix.com.au', role: 'admin', phone: '0456 789 012', suburb: 'Perth CBD' },
-  { id: 'usr-6', name: 'Pipeloluwa Admin', email: 'superadmin@kleanix.com.au', role: 'superadmin', phone: '0400 000 001', suburb: 'Perth' }
+export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
+  {
+    id: 'stf-1',
+    name: 'Pipeloluwa Admin',
+    email: 'superadmin@kleanix.com.au',
+    phone: '0400 000 001',
+    role: 'superadmin',
+    status: 'active',
+    policeCheckVerified: true,
+    insuranceVerified: true,
+    joinedDate: 'Jan 2024',
+    jobsCompleted: 0
+  },
+  {
+    id: 'stf-2',
+    name: 'Jessica Taylor',
+    email: 'admin@kleanix.com.au',
+    phone: '0412 888 999',
+    role: 'admin',
+    status: 'active',
+    policeCheckVerified: true,
+    insuranceVerified: true,
+    joinedDate: 'Mar 2024',
+    jobsCompleted: 0
+  },
+  {
+    id: 'stf-3',
+    name: 'Elena Rostova',
+    email: 'cleaner.elena@kleanix.com.au',
+    phone: '0434 567 890',
+    role: 'cleaner',
+    status: 'active',
+    suburbAssigned: 'South Perth & CBD',
+    policeCheckVerified: true,
+    insuranceVerified: true,
+    joinedDate: 'Feb 2024',
+    jobsCompleted: 48
+  },
+  {
+    id: 'stf-4',
+    name: 'Marcus Cole',
+    email: 'cleaner.marcus@kleanix.com.au',
+    phone: '0445 678 901',
+    role: 'cleaner',
+    status: 'active',
+    suburbAssigned: 'Western Suburbs',
+    policeCheckVerified: true,
+    insuranceVerified: true,
+    joinedDate: 'Apr 2024',
+    jobsCompleted: 34
+  }
 ];
 
-export const INITIAL_DASHBOARD_BOOKINGS: DashboardBooking[] = [
+export const INITIAL_PORTAL_BOOKINGS: DashboardBooking[] = [
   {
     id: 'bkg-101',
     reference: 'KLX-48201',
@@ -315,18 +356,15 @@ export function calculateCleaningPrice(params: {
 }) {
   const service = DUMMY_SERVICES.find(s => s.id === params.serviceId) || DUMMY_SERVICES[0];
   
-  // Base room increments
   const bedroomRate = params.serviceId === 'vacate' ? 45 : params.serviceId === 'deep' ? 35 : 25;
   const bathroomRate = params.serviceId === 'vacate' ? 50 : params.serviceId === 'deep' ? 40 : 30;
   
-  // Calculate raw base: 1 bed / 1 bath included in service.basePrice
   const extraBeds = Math.max(0, params.bedrooms - 1);
   const extraBaths = Math.max(0, params.bathrooms - 1);
   
   const roomCost = (extraBeds * bedroomRate) + (extraBaths * bathroomRate);
   const baseServiceCost = service.basePrice + roomCost;
   
-  // Extras
   let extrasCost = 0;
   params.extras.forEach(extraId => {
     const item = DUMMY_EXTRAS.find(e => e.id === extraId);
@@ -335,13 +373,11 @@ export function calculateCleaningPrice(params: {
   
   const rawSubtotal = baseServiceCost + extrasCost;
   
-  // Frequency discount
   const freq = FREQUENCY_OPTIONS.find(f => f.id === params.frequency) || FREQUENCY_OPTIONS[0];
   const freqDiscountAmount = Math.round((rawSubtotal * freq.discountPercentage) / 100);
   
   const discountedSubtotal = rawSubtotal - freqDiscountAmount;
   
-  // Coupon discount
   let couponDiscount = 0;
   if (params.couponCode && VALID_COUPONS[params.couponCode.toUpperCase()]) {
     const coupon = VALID_COUPONS[params.couponCode.toUpperCase()];
@@ -380,17 +416,17 @@ export function calculateCleaningPrice(params: {
 
 export const mockApiClient = {
   async getServices(): Promise<CleaningService[]> {
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 150));
     return DUMMY_SERVICES;
   },
 
   async getServiceBySlug(slug: string): Promise<CleaningService | null> {
-    await new Promise(r => setTimeout(r, 150));
+    await new Promise(r => setTimeout(r, 100));
     return DUMMY_SERVICES.find(s => s.slug === slug) || null;
   },
 
   async validateCoupon(code: string): Promise<{ valid: boolean; discountText?: string; message: string }> {
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 150));
     const normalized = code.trim().toUpperCase();
     if (VALID_COUPONS[normalized]) {
       return {
@@ -401,12 +437,12 @@ export const mockApiClient = {
     }
     return {
       valid: false,
-      message: 'Invalid or expired code. Try "KLEAN15"'
+      message: 'Invalid code. Try "KLEAN15"'
     };
   },
 
   async checkSuburbCoverage(query: string): Promise<{ found: boolean; suburb?: SuburbCoverage }> {
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 150));
     const term = query.toLowerCase().trim();
     const match = DUMMY_SUBURBS.find(s => 
       s.postcode === term || s.name.toLowerCase().includes(term)
@@ -423,19 +459,18 @@ export const mockApiClient = {
     message: string;
     confirmationData: any;
   }> {
-    await new Promise(r => setTimeout(r, 600));
-    
+    await new Promise(r => setTimeout(r, 500));
     const randomRef = 'KLX-' + Math.floor(10000 + Math.random() * 90000);
     const serviceName = DUMMY_SERVICES.find(s => s.id === bookingPayload.serviceId)?.title || 'Standard Home Clean';
 
     return {
       success: true,
       reference: randomRef,
-      message: 'Booking confirmed! We have assigned a verified cleaner.',
+      message: 'Booking confirmed!',
       confirmationData: {
         reference: randomRef,
         submittedAt: new Date().toISOString(),
-        customerName: bookingPayload.customer?.fullName || 'Valued Customer',
+        customerName: bookingPayload.customer?.fullName || 'Customer',
         serviceName,
         totalAmount: bookingPayload.finalTotal || 160,
         scheduledDate: bookingPayload.date || 'Upcoming Date',
