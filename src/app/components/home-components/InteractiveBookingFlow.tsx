@@ -19,7 +19,6 @@ import {
   submitBookingThunk,
   resetBooking
 } from '@/app/state_management/reducers/client-reducers/bookingSlice';
-import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
 import {
   DUMMY_SERVICES,
   DUMMY_EXTRAS,
@@ -175,25 +174,6 @@ export const InteractiveBookingFlow = () => {
             </span>
             <span>No upfront card charge</span>
           </div>
-        </div>
-
-        {/* Rate & Review Prompt */}
-        <div className="my-6 p-5 rounded-2xl bg-amber-50 border border-amber-200 text-center max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <p className="font-extrabold text-amber-950 text-sm flex items-center justify-center sm:justify-start gap-1.5">
-              <FaStar className="text-amber-500 flex-shrink-0" /> Have you used Kleanix before?
-            </p>
-            <p className="text-xs text-amber-800 mt-0.5">
-              Share your feedback to help us maintain Perth&apos;s #1 cleaning standard.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => dispatch(openLeaveReviewModal())}
-            className="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all whitespace-nowrap active:scale-95"
-          >
-            Rate & Review Clean
-          </button>
         </div>
 
         {/* Action Buttons */}
@@ -842,21 +822,6 @@ export const InteractiveBookingFlow = () => {
                     You will only be invoiced once our team completes your clean to 100% satisfaction. Free cancellation up to 24 hours prior.
                   </p>
                 </div>
-              </div>
-
-              {/* Rate & Review Previous Clean Prompt */}
-              <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/60 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-900">
-                  <FaStar className="text-amber-500 flex-shrink-0" />
-                  <span>Used Kleanix before? Share your experience with other Perth locals.</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => dispatch(openLeaveReviewModal())}
-                  className="font-bold text-amber-800 hover:text-amber-900 underline whitespace-nowrap self-center sm:self-auto"
-                >
-                  Rate Cleaner
-                </button>
               </div>
 
               {/* Buttons */}

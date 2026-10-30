@@ -1,4 +1,4 @@
-export type ServiceCategory = 'residential' | 'commercial' | 'specialized' | 'outdoor';
+export type ServiceCategory = 'residential' | 'commercial' | 'specialized';
 
 export interface RoomInclusion {
   room: string;
@@ -103,22 +103,38 @@ export interface QuoteFormState {
   isCalculated: boolean;
 }
 
-export interface CustomerReview {
-  id: string;
-  author: string;
-  suburb: string;
-  rating: number;
-  date: string;
-  service: string;
-  comment: string;
-  verified: boolean;
-  avatar?: string;
-}
-
 export interface SuburbCoverage {
   postcode: string;
   name: string;
   region: 'North Perth' | 'South Perth' | 'Western Suburbs' | 'Eastern Suburbs' | 'Central Perth' | 'Mandurah & Rockingham';
   available: boolean;
   nextAvailableSlot: string;
+}
+
+// User Dashboard & Role Types
+export type UserRole = 'customer' | 'cleaner' | 'admin' | 'superadmin';
+
+export interface DashboardUser {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  avatar?: string;
+  phone?: string;
+  suburb?: string;
+}
+
+export interface DashboardBooking {
+  id: string;
+  reference: string;
+  customerName: string;
+  customerPhone: string;
+  serviceTitle: string;
+  address: string;
+  suburb: string;
+  date: string;
+  timeSlot: string;
+  status: 'upcoming' | 'in_progress' | 'completed' | 'cancelled';
+  price: number;
+  cleanerAssigned?: string;
 }

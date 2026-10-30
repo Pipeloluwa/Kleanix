@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAppSelector, useAppDispatch } from '@/app/state_management/hooks';
 import { openQuoteModal } from '@/app/state_management/reducers/client-reducers/uiSlice';
-import { openLeaveReviewModal } from '@/app/state_management/reducers/client-reducers/reviewsSlice';
 import LogoComponent from './LogoComponent';
 import {
   FaPhoneAlt,
@@ -13,7 +12,7 @@ import {
   FaBars,
   FaTimes,
   FaCalendarCheck,
-  FaStar
+  FaUserCircle
 } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi2';
 import { DUMMY_SERVICES } from '@/app/services/mockApiService';
@@ -22,7 +21,6 @@ export const NavBarComponent = () => {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const navBgState = useAppSelector((state) => state.navBgState.value);
-  const displayReviews = useAppSelector((state) => state.reviews.displayReviews);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -43,21 +41,21 @@ export const NavBarComponent = () => {
   return (
     <>
       <nav
-        className={`sticky top-0 z-40 transition-all duration-300 ${
+        className={`sticky top-0 z-40 transition-all duration-200 ${
           navBgState
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-3.5'
-            : 'bg-white border-b border-slate-100 py-4'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-3'
+            : 'bg-white border-b border-slate-100 py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Logo with comfortable breathing room */}
+          {/* Logo */}
           <div className="flex-shrink-0 mr-4">
             <LogoComponent />
           </div>
 
-          {/* Desktop Navigation Links (Clean, Uncluttered, Spaced) */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-7">
             
             {/* Services Dropdown */}
             <div
@@ -67,7 +65,7 @@ export const NavBarComponent = () => {
             >
               <button
                 className={`flex items-center gap-1.5 text-sm font-semibold transition-colors py-2 focus:outline-none ${
-                  pathname?.startsWith('/services') ? 'text-sky-600' : 'text-slate-700 hover:text-sky-600'
+                  pathname?.startsWith('/services') ? 'text-sky-600 font-bold' : 'text-slate-700 hover:text-sky-600'
                 }`}
                 aria-expanded={servicesDropdownOpen}
               >
@@ -79,44 +77,31 @@ export const NavBarComponent = () => {
                 />
               </button>
 
-              {/* Animated Dropdown Menu */}
               <AnimatePresence>
                 {servicesDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.18, ease: "easeOut" }}
-                    className="absolute top-full -left-8 w-[370px] bg-white rounded-3xl shadow-2xl border border-slate-100 py-3.5 px-3 z-50 max-h-[80vh] overflow-y-auto"
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full -left-4 w-72 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 px-2 z-50"
                   >
-                    <div className="px-3 py-1.5 border-b border-slate-100 mb-1.5 flex items-center justify-between">
-                      <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Perth Cleaning Services</p>
-                      <span className="text-[10px] font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full">WA Certified</span>
-                    </div>
-
                     <div className="space-y-1">
                       {DUMMY_SERVICES.map((srv) => (
                         <Link
                           key={srv.id}
                           href={`/services/${srv.slug}`}
                           onClick={() => setServicesDropdownOpen(false)}
-                          className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-sky-50/70 transition-colors group"
+                          className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-sky-50 transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors">
-                            <HiSparkles className="text-sm" />
+                          <div className="w-7 h-7 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                            <HiSparkles className="text-xs" />
                           </div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
-                                {srv.title}
-                              </p>
-                              {srv.popular && (
-                                <span className="text-[10px] bg-amber-100 text-amber-800 font-extrabold px-1.5 py-0.5 rounded-full">
-                                  Popular
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                          <div>
+                            <p className="text-xs font-bold text-slate-900 group-hover:text-sky-600">
+                              {srv.title}
+                            </p>
+                            <p className="text-[11px] text-slate-500">
                               {srv.priceNote}
                             </p>
                           </div>
@@ -124,13 +109,13 @@ export const NavBarComponent = () => {
                       ))}
                     </div>
 
-                    <div className="mt-2 pt-2 border-t border-slate-100 px-3">
+                    <div className="mt-2 pt-2 border-t border-slate-100 px-2">
                       <Link
                         href="/services"
                         onClick={() => setServicesDropdownOpen(false)}
                         className="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center justify-between py-1"
                       >
-                        <span>View all packages & room checklists</span>
+                        <span>All Services & Inclusions</span>
                         <span>&rarr;</span>
                       </Link>
                     </div>
@@ -145,7 +130,7 @@ export const NavBarComponent = () => {
                 pathname === '/pricing' ? 'text-sky-600 font-bold' : 'text-slate-700 hover:text-sky-600'
               }`}
             >
-              Pricing & Rates
+              Pricing
             </Link>
 
             <Link
@@ -154,7 +139,7 @@ export const NavBarComponent = () => {
                 pathname === '/suburbs' ? 'text-sky-600 font-bold' : 'text-slate-700 hover:text-sky-600'
               }`}
             >
-              Service Areas
+              Areas
             </Link>
 
             <Link
@@ -174,31 +159,41 @@ export const NavBarComponent = () => {
             >
               Contact
             </Link>
+
+            <Link
+              href="/dashboard"
+              className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
+                pathname?.startsWith('/dashboard') ? 'text-sky-600' : 'text-slate-600 hover:text-sky-600'
+              }`}
+            >
+              <FaUserCircle className="text-sm text-sky-500" />
+              <span>Portal</span>
+            </Link>
           </div>
 
-          {/* Action CTAs (Uncrowded, High-Converting) */}
-          <div className="hidden sm:flex items-center gap-2.5 lg:gap-3">
+          {/* Action CTAs */}
+          <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={() => dispatch(openQuoteModal())}
-              className="text-xs lg:text-sm font-bold text-sky-700 hover:text-sky-900 bg-sky-50/80 hover:bg-sky-100 px-3.5 lg:px-4 py-2.5 rounded-xl border border-sky-200/80 transition-all shadow-sm active:scale-95"
+              className="text-xs lg:text-sm font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 px-4 py-2.5 rounded-xl transition-all"
             >
-              Instant Quote
+              Quick Quote
             </button>
 
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 text-xs lg:text-sm font-extrabold text-white bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 px-4 lg:px-5 py-2.5 rounded-xl shadow-md shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all"
+              className="inline-flex items-center gap-2 text-xs lg:text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 lg:px-5 py-2.5 rounded-xl shadow-sm transition-all"
             >
-              <FaCalendarCheck className="text-sm" />
+              <FaCalendarCheck className="text-xs" />
               <span>Book Online</span>
             </Link>
           </div>
 
-          {/* Mobile & Tablet Hamburger Navigation Button */}
+          {/* Mobile Navigation Button */}
           <div className="flex lg:hidden items-center gap-2">
             <Link
               href="/book"
-              className="sm:hidden text-xs font-bold text-white bg-gradient-to-r from-sky-600 to-cyan-600 px-3.5 py-2 rounded-xl shadow-sm"
+              className="sm:hidden text-xs font-bold text-white bg-sky-600 px-3 py-2 rounded-xl shadow-sm"
             >
               Book
             </Link>
@@ -207,7 +202,7 @@ export const NavBarComponent = () => {
               className="p-2.5 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none transition-colors border border-slate-200"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+              {mobileMenuOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
             </button>
           </div>
 
@@ -218,7 +213,6 @@ export const NavBarComponent = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -227,7 +221,6 @@ export const NavBarComponent = () => {
               onClick={closeMobile}
             />
 
-            {/* Drawer content */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -245,15 +238,14 @@ export const NavBarComponent = () => {
                 </button>
               </div>
 
-              <div className="p-4 space-y-4 flex-1">
-                {/* Book & Quote primary buttons */}
+              <div className="p-4 space-y-3 flex-1">
                 <Link
                   href="/book"
                   onClick={closeMobile}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 text-white font-bold text-sm shadow-md shadow-sky-500/20"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-sky-600 text-white font-bold text-sm shadow-sm"
                 >
                   <FaCalendarCheck />
-                  <span>Book A Clean Now</span>
+                  <span>Book Clean</span>
                 </Link>
 
                 <button
@@ -261,35 +253,31 @@ export const NavBarComponent = () => {
                     closeMobile();
                     dispatch(openQuoteModal());
                   }}
-                  className="w-full py-2.5 rounded-xl bg-sky-50 text-sky-700 font-bold text-xs border border-sky-200 text-center"
+                  className="w-full py-2.5 rounded-xl bg-slate-100 text-slate-800 font-bold text-xs text-center"
                 >
-                  Get Instant Quote
+                  Quick Quote
                 </button>
 
-                {/* Call direct */}
+                <Link
+                  href="/dashboard"
+                  onClick={closeMobile}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-sky-200 bg-sky-50 text-sky-700 font-bold text-xs"
+                >
+                  <FaUserCircle />
+                  <span>Portal (Customer / Admin / Super Admin)</span>
+                </Link>
+
                 <a
                   href="tel:1300346034"
                   className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-50"
                 >
                   <FaPhoneAlt className="text-sky-600 text-[10px]" />
-                  <span>Call 1300 34 60 34</span>
+                  <span>1300 34 60 34</span>
                 </a>
-
-                {/* Rate Your Clean Action in Drawer */}
-                <button
-                  onClick={() => {
-                    closeMobile();
-                    dispatch(openLeaveReviewModal());
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-xs border border-amber-200 flex items-center justify-center gap-1.5 transition-colors"
-                >
-                  <FaStar className="text-amber-500 text-xs" />
-                  <span>Rate Your Clean</span>
-                </button>
 
                 {/* Services list */}
                 <div className="pt-2">
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Our Services</p>
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Services</p>
                   <div className="space-y-1">
                     {DUMMY_SERVICES.map((s) => (
                       <Link
@@ -304,7 +292,7 @@ export const NavBarComponent = () => {
                   </div>
                 </div>
 
-                {/* Navigation links */}
+                {/* Explore Links */}
                 <div className="pt-2 border-t border-slate-100">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Explore</p>
                   <div className="space-y-1">
@@ -313,56 +301,44 @@ export const NavBarComponent = () => {
                       onClick={closeMobile}
                       className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      Pricing & Rate Card
+                      Pricing
                     </Link>
                     <Link
                       href="/suburbs"
                       onClick={closeMobile}
                       className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      Perth Service Areas
+                      Perth Areas
                     </Link>
-                    {displayReviews && (
-                      <Link
-                        href="/reviews"
-                        onClick={closeMobile}
-                        className="flex items-center justify-between py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
-                      >
-                        <span>Customer Reviews</span>
-                        <span className="text-xs bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded-full">4.9★</span>
-                      </Link>
-                    )}
                     <Link
                       href="/about"
                       onClick={closeMobile}
                       className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      About Kleanix
+                      About
                     </Link>
                     <Link
                       href="/faq"
                       onClick={closeMobile}
                       className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      Frequently Asked Questions
+                      FAQ
                     </Link>
                     <Link
                       href="/contact"
                       onClick={closeMobile}
                       className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      Contact Us
+                      Contact
                     </Link>
                   </div>
                 </div>
 
               </div>
 
-              {/* Bottom info */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 text-xs text-slate-500 space-y-1">
+              <div className="p-4 bg-slate-50 border-t border-slate-100 text-xs text-slate-500">
                 <p className="font-semibold text-slate-700">Kleanix Perth WA</p>
-                <p>9 Parker Street, South Perth WA 6151</p>
-                <p className="text-[11px] text-slate-400">ABN: 84 928 104 391 &bull; Police Checked & Insured</p>
+                <p className="text-[11px] text-slate-400">Police Checked & Insured</p>
               </div>
             </motion.div>
           </div>
