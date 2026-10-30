@@ -10,12 +10,23 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   color: #1e293b;
   background-color: #ffffff;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove default harsh mobile & desktop focus outlines while preserving accessibility */
+a, button, select, input, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus, button:focus {
+  outline: none;
 }
 
 button {
@@ -55,11 +66,11 @@ button {
   }
 }
 
-.animate-float {
+.animate-float-slow {
   animation: floatSlow 4s ease-in-out infinite;
 }
 
-/* Shimmer pulse for badges */
+/* Subtle pulse */
 @keyframes pulseSubtle {
   0%, 100% {
     opacity: 1;
@@ -70,5 +81,5 @@ button {
 }
 
 .animate-pulse-subtle {
-  animation: pulseSubtle 2.5s ease-in-out infinite;
+  animation: pulseSubtle 3s ease-in-out infinite;
 }

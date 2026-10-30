@@ -31,6 +31,10 @@ export const NavBarComponent = () => {
 
   const closeMobile = () => setMobileMenuOpen(false);
 
+  // Common interactive link styles: clean, no harsh browser focus outlines, styled active states
+  const linkBaseClasses =
+    "px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-150 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 select-none active:scale-[0.98]";
+
   return (
     <>
       <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 py-3">
@@ -42,55 +46,75 @@ export const NavBarComponent = () => {
           </div>
 
           {/* Simple Clean Navigation */}
-          <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
+          <div className="hidden md:flex items-center gap-2 text-slate-700">
             <Link
               href="/services"
-              className={`hover:text-sky-600 transition-colors ${pathname === '/services' ? 'text-sky-600 font-bold' : ''}`}
+              className={`${linkBaseClasses} ${
+                pathname === '/services'
+                  ? 'text-sky-600 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
               Services
             </Link>
 
             <Link
               href="/pricing"
-              className={`hover:text-sky-600 transition-colors ${pathname === '/pricing' ? 'text-sky-600 font-bold' : ''}`}
+              className={`${linkBaseClasses} ${
+                pathname === '/pricing'
+                  ? 'text-sky-600 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
               Pricing
             </Link>
 
             <Link
               href="/suburbs"
-              className={`hover:text-sky-600 transition-colors ${pathname === '/suburbs' ? 'text-sky-600 font-bold' : ''}`}
+              className={`${linkBaseClasses} ${
+                pathname === '/suburbs'
+                  ? 'text-sky-600 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
               Areas
             </Link>
 
             <Link
               href="/faq"
-              className={`hover:text-sky-600 transition-colors ${pathname === '/faq' ? 'text-sky-600 font-bold' : ''}`}
+              className={`${linkBaseClasses} ${
+                pathname === '/faq'
+                  ? 'text-sky-600 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
               FAQ
             </Link>
 
             <Link
               href="/contact"
-              className={`hover:text-sky-600 transition-colors ${pathname === '/contact' ? 'text-sky-600 font-bold' : ''}`}
+              className={`${linkBaseClasses} ${
+                pathname === '/contact'
+                  ? 'text-sky-600 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
               Contact
             </Link>
           </div>
 
           {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2.5">
             <button
               onClick={() => dispatch(openQuoteModal())}
-              className="text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 px-3.5 py-2 rounded-xl transition-all"
+              className="text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 px-3.5 py-2 rounded-xl transition-all outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 active:scale-95"
             >
               Quote
             </button>
 
             <Link
               href="/book"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl shadow-sm transition-all outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 active:scale-95"
             >
               <FaCalendarCheck className="text-[11px]" />
               <span>Book Clean</span>
@@ -101,13 +125,13 @@ export const NavBarComponent = () => {
           <div className="flex md:hidden items-center gap-2">
             <Link
               href="/book"
-              className="sm:hidden text-xs font-bold text-white bg-sky-600 px-3 py-1.5 rounded-lg"
+              className="sm:hidden text-xs font-bold text-white bg-sky-600 px-3 py-1.5 rounded-lg outline-none active:scale-95"
             >
               Book
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 outline-none focus:outline-none active:scale-95"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
@@ -138,25 +162,55 @@ export const NavBarComponent = () => {
             >
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <LogoComponent size="sm" />
-                <button onClick={closeMobile} className="p-1 text-slate-500">
+                <button onClick={closeMobile} className="p-1 text-slate-500 outline-none">
                   <FaTimes />
                 </button>
               </div>
 
-              <div className="space-y-2 flex-1 text-sm font-medium text-slate-800">
-                <Link href="/services" onClick={closeMobile} className="block py-2 px-3 rounded-lg hover:bg-slate-50">
+              <div className="space-y-1.5 flex-1 text-sm font-medium text-slate-800">
+                <Link
+                  href="/services"
+                  onClick={closeMobile}
+                  className={`block py-2.5 px-3 rounded-xl transition-colors outline-none ${
+                    pathname === '/services' ? 'bg-sky-50 text-sky-600 font-bold' : 'hover:bg-slate-50'
+                  }`}
+                >
                   Services
                 </Link>
-                <Link href="/pricing" onClick={closeMobile} className="block py-2 px-3 rounded-lg hover:bg-slate-50">
+                <Link
+                  href="/pricing"
+                  onClick={closeMobile}
+                  className={`block py-2.5 px-3 rounded-xl transition-colors outline-none ${
+                    pathname === '/pricing' ? 'bg-sky-50 text-sky-600 font-bold' : 'hover:bg-slate-50'
+                  }`}
+                >
                   Pricing
                 </Link>
-                <Link href="/suburbs" onClick={closeMobile} className="block py-2 px-3 rounded-lg hover:bg-slate-50">
+                <Link
+                  href="/suburbs"
+                  onClick={closeMobile}
+                  className={`block py-2.5 px-3 rounded-xl transition-colors outline-none ${
+                    pathname === '/suburbs' ? 'bg-sky-50 text-sky-600 font-bold' : 'hover:bg-slate-50'
+                  }`}
+                >
                   Perth Areas
                 </Link>
-                <Link href="/faq" onClick={closeMobile} className="block py-2 px-3 rounded-lg hover:bg-slate-50">
+                <Link
+                  href="/faq"
+                  onClick={closeMobile}
+                  className={`block py-2.5 px-3 rounded-xl transition-colors outline-none ${
+                    pathname === '/faq' ? 'bg-sky-50 text-sky-600 font-bold' : 'hover:bg-slate-50'
+                  }`}
+                >
                   FAQ
                 </Link>
-                <Link href="/contact" onClick={closeMobile} className="block py-2 px-3 rounded-lg hover:bg-slate-50">
+                <Link
+                  href="/contact"
+                  onClick={closeMobile}
+                  className={`block py-2.5 px-3 rounded-xl transition-colors outline-none ${
+                    pathname === '/contact' ? 'bg-sky-50 text-sky-600 font-bold' : 'hover:bg-slate-50'
+                  }`}
+                >
                   Contact
                 </Link>
               </div>
@@ -165,13 +219,13 @@ export const NavBarComponent = () => {
                 <Link
                   href="/book"
                   onClick={closeMobile}
-                  className="block w-full py-2.5 text-center rounded-xl bg-sky-600 text-white font-bold text-xs"
+                  className="block w-full py-2.5 text-center rounded-xl bg-sky-600 text-white font-bold text-xs shadow-sm outline-none active:scale-95"
                 >
                   Book A Clean
                 </Link>
                 <a
                   href="tel:1300346034"
-                  className="block w-full py-2 text-center rounded-xl border border-slate-200 text-slate-700 font-bold text-xs"
+                  className="block w-full py-2 text-center rounded-xl border border-slate-200 text-slate-700 font-bold text-xs outline-none"
                 >
                   1300 34 60 34
                 </a>
