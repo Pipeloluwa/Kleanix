@@ -38,8 +38,6 @@ export type CleanFrequency = 'once_off' | 'weekly' | 'fortnightly' | 'monthly';
 export interface FrequencyOption {
   id: CleanFrequency;
   name: string;
-  discountPercentage: number;
-  badge?: string;
   description: string;
 }
 
@@ -68,12 +66,7 @@ export interface BookingState {
   timeSlot: string;
   selectedExtras: string[];
   customer: BookingCustomer;
-  couponCode: string;
-  appliedDiscount: number;
-  couponValid: boolean;
-  couponError?: string;
   subtotal: number;
-  discountTotal: number;
   taxGst: number;
   finalTotal: number;
   status: 'idle' | 'configuring' | 'submitting' | 'confirmed' | 'failed';
@@ -91,18 +84,6 @@ export interface BookingState {
   error?: string;
 }
 
-export interface QuoteFormState {
-  serviceId: string;
-  bedrooms: number;
-  bathrooms: number;
-  frequency: CleanFrequency;
-  suburb: string;
-  estimatedTotal: number;
-  estimatedHours: number;
-  discountSaved: number;
-  isCalculated: boolean;
-}
-
 export interface SuburbCoverage {
   postcode: string;
   name: string;
@@ -111,7 +92,6 @@ export interface SuburbCoverage {
   nextAvailableSlot: string;
 }
 
-// User & Portal Roles
 export type StaffRole = 'cleaner' | 'admin' | 'superadmin';
 
 export interface StaffAccount {

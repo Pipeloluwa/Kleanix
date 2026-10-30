@@ -5,7 +5,6 @@ import { setNavBg } from '../state_management/reducers/client-reducers/navBgStat
 import NavBarComponent from '../components/shared-components/NavBarComponent';
 import { FooterComponent } from '../components/shared-components/FooterComponent';
 import TopAnnouncementBar from '../components/shared-components/TopAnnouncementBar';
-import QuoteModal from '../components/shared-components/QuoteModal';
 
 const PageContainer = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -31,7 +30,6 @@ const PageContainer = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <FooterComponent />
-      <QuoteModal />
     </div>
   );
 };

@@ -14,8 +14,6 @@ import {
   toggleExtra,
   setSchedule,
   updateCustomerField,
-  validateCouponThunk,
-  removeCoupon,
   submitBookingThunk,
   resetBooking
 } from '@/app/state_management/reducers/client-reducers/bookingSlice';
@@ -64,7 +62,6 @@ export const InteractiveBookingFlow = () => {
   const dispatch = useAppDispatch();
   const booking = useAppSelector((state) => state.booking);
 
-  const [couponInput, setCouponInput] = useState('');
   const flowTopRef = useRef<HTMLDivElement>(null);
 
   const scrollToTop = () => {
@@ -103,13 +100,6 @@ export const InteractiveBookingFlow = () => {
   };
 
   const currentService = DUMMY_SERVICES.find((s) => s.id === booking.serviceId) || DUMMY_SERVICES[0];
-
-  const handleApplyCoupon = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (couponInput.trim()) {
-      dispatch(validateCouponThunk(couponInput.trim()));
-    }
-  };
 
   const handleSubmit = () => {
     dispatch(submitBookingThunk());
@@ -399,11 +389,6 @@ export const InteractiveBookingFlow = () => {
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-extrabold text-sm text-slate-900">{freq.name}</span>
-                        {freq.discountPercentage > 0 && (
-                          <span className="text-xs font-black bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
-                            Save {freq.discountPercentage}%
-                          </span>
-                        )}
                       </div>
                       <p className="text-xs text-slate-500">{freq.description}</p>
                     </div>
@@ -765,56 +750,8 @@ export const InteractiveBookingFlow = () => {
                 </div>
               </div>
 
-              {/* Coupon Code Input */}
-              <div className="pt-4 border-t border-slate-100">
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Promotional Coupon / Voucher Code
-                </label>
-                <div className="flex gap-2">
-                  <div className="relative flex-1">
-                    <FaTag className="absolute left-3.5 top-3.5 text-slate-400 text-xs" />
-                    <input
-                      type="text"
-                      placeholder="Try code: KLEAN15 or PERTH20"
-                      value={couponInput}
-                      onChange={(e) => setCouponInput(e.target.value)}
-                      className="w-full text-sm rounded-xl border border-slate-300 pl-9 p-2.5 bg-slate-50 uppercase font-mono font-bold focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleApplyCoupon}
-                    className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors"
-                  >
-                    Apply Code
-                  </button>
-                </div>
-
-                {/* Coupon Feedback */}
-                {booking.couponValid && (
-                  <div className="mt-2 flex items-center justify-between text-xs text-emerald-700 bg-emerald-50 p-2 rounded-lg border border-emerald-200">
-                    <span className="flex items-center gap-1 font-semibold">
-                      <FaCheck className="text-emerald-500" /> Coupon &ldquo;{booking.couponCode}&rdquo; applied successfully!
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => dispatch(removeCoupon())}
-                      className="text-emerald-800 underline font-bold"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                )}
-
-                {booking.couponError && (
-                  <p className="mt-1.5 text-xs text-red-600 font-medium">
-                    {booking.couponError}
-                  </p>
-                )}
-              </div>
-
               {/* Payment Guarantee Notice */}
-              <div className="p-4 rounded-2xl bg-sky-50 border border-sky-100 flex items-start gap-3">
+              <div className="p-4 rounded-2xl bg-sky-50 border border-sky-100 flex items-start gap-3 mt-4">
                 <FaLock className="text-sky-600 text-base mt-0.5 flex-shrink-0" />
                 <div className="text-xs text-sky-900 space-y-0.5">
                   <p className="font-bold">Zero Risk - Payment Held Upon Completion</p>
@@ -912,16 +849,9 @@ export const InteractiveBookingFlow = () => {
             {/* Calculations Breakdown */}
             <div className="py-4 space-y-2 text-xs border-b border-slate-800">
               <div className="flex items-center justify-between text-slate-400">
-                <span>Base Subtotal:</span>
+                <span>Base Total:</span>
                 <span>${booking.subtotal}</span>
               </div>
-
-              {booking.discountTotal > 0 && (
-                <div className="flex items-center justify-between text-emerald-400 font-bold">
-                  <span>Frequency / Promo Discount:</span>
-                  <span>-${booking.discountTotal}</span>
-                </div>
-              )}
 
               <div className="flex items-center justify-between text-slate-400">
                 <span>GST (10% Included):</span>

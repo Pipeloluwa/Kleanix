@@ -2,21 +2,14 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
-import { useAppSelector, useAppDispatch } from '@/app/state_management/hooks';
-import {
-  updateQuoteService,
-  updateQuoteBedrooms,
-  updateQuoteBathrooms,
-  updateQuoteFrequency
-} from '@/app/state_management/reducers/client-reducers/quoteSlice';
+import { useAppDispatch } from '@/app/state_management/hooks';
 import {
   setServiceId,
   setBedrooms,
   setBathrooms,
-  setFrequency,
-  updateCustomerField
+  setFrequency
 } from '@/app/state_management/reducers/client-reducers/bookingSlice';
-import { DUMMY_SERVICES, FREQUENCY_OPTIONS } from '@/app/services/mockApiService';
+import { DUMMY_SERVICES, FREQUENCY_OPTIONS, calculateCleaningPrice } from '@/app/services/mockApiService';
 import { FaShieldAlt, FaCheck, FaArrowRight } from 'react-icons/fa';
 import { CleanFrequency } from '@/app/state_management/types';
 import { fadeInUp } from '@/app/animation/animationVariants';
@@ -24,13 +17,27 @@ import { fadeInUp } from '@/app/animation/animationVariants';
 export const HeroComponent = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const quote = useAppSelector((state) => state.quote);
+
+  // Simple local state for initial selection
+  const [selectedServiceId, setSelectedServiceId] = useState(DUMMY_SERVICES[0].id);
+  const [bedrooms, setLocalBedrooms] = useState(2);
+  const [bathrooms, setLocalBathrooms] = useState(1);
+  const [frequency, setLocalFrequency] = useState<CleanFrequency>('once_off');
+
+  // Calculate clean flat-rate price
+  const priceCalculation = calculateCleaningPrice({
+    serviceId: selectedServiceId,
+    bedrooms,
+    bathrooms,
+    frequency,
+    extras: []
+  });
 
   const handleStartBooking = () => {
-    dispatch(setServiceId(quote.serviceId));
-    dispatch(setBedrooms(quote.bedrooms));
-    dispatch(setBathrooms(quote.bathrooms));
-    dispatch(setFrequency(quote.frequency));
+    dispatch(setServiceId(selectedServiceId));
+    dispatch(setBedrooms(bedrooms));
+    dispatch(setBathrooms(bathrooms));
+    dispatch(setFrequency(frequency));
     router.push('/book');
   };
 
@@ -67,8 +74,8 @@ export const HeroComponent = () => {
                 Clean Type
               </label>
               <select
-                value={quote.serviceId}
-                onChange={(e) => dispatch(updateQuoteService(e.target.value))}
+                value={selectedServiceId}
+                onChange={(e) => setSelectedServiceId(e.target.value)}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-none focus:border-sky-500"
               >
                 {DUMMY_SERVICES.map((s) => (
@@ -84,8 +91,8 @@ export const HeroComponent = () => {
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <select
-                  value={quote.bedrooms}
-                  onChange={(e) => dispatch(updateQuoteBedrooms(Number(e.target.value)))}
+                  value={bedrooms}
+                  onChange={(e) => setLocalBedrooms(Number(e.target.value))}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-900 focus:outline-none focus:border-sky-500"
                 >
                   {[1, 2, 3, 4, 5].map((n) => (
@@ -93,8 +100,8 @@ export const HeroComponent = () => {
                   ))}
                 </select>
                 <select
-                  value={quote.bathrooms}
-                  onChange={(e) => dispatch(updateQuoteBathrooms(Number(e.target.value)))}
+                  value={bathrooms}
+                  onChange={(e) => setLocalBathrooms(Number(e.target.value))}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-900 focus:outline-none focus:border-sky-500"
                 >
                   {[1, 2, 3, 4].map((n) => (
@@ -110,13 +117,13 @@ export const HeroComponent = () => {
                 Frequency
               </label>
               <select
-                value={quote.frequency}
-                onChange={(e) => dispatch(updateQuoteFrequency(e.target.value as CleanFrequency))}
+                value={frequency}
+                onChange={(e) => setLocalFrequency(e.target.value as CleanFrequency)}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-none focus:border-sky-500"
               >
                 {FREQUENCY_OPTIONS.map((f) => (
                   <option key={f.id} value={f.id}>
-                    {f.name} {f.discountPercentage > 0 ? `(-${f.discountPercentage}%)` : ''}
+                    {f.name}
                   </option>
                 ))}
               </select>
@@ -129,13 +136,8 @@ export const HeroComponent = () => {
             <div>
               <span className="text-xs text-slate-400">Total (GST included):</span>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-slate-900">${quote.estimatedTotal}</span>
-                <span className="text-xs text-slate-500">&bull; ~{quote.estimatedHours} hrs</span>
-                {quote.discountSaved > 0 && (
-                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                    Save ${quote.discountSaved}
-                  </span>
-                )}
+                <span className="text-2xl font-black text-slate-900">${priceCalculation.finalTotal}</span>
+                <span className="text-xs text-slate-500">&bull; ~{priceCalculation.estimatedHours} hrs</span>
               </div>
             </div>
 
@@ -152,10 +154,10 @@ export const HeroComponent = () => {
         {/* 3 Simple highlights */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-slate-500 font-medium">
           <span className="flex items-center gap-1.5">
-            <FaCheck className="text-emerald-500 text-[10px]" /> Police Checked
+            <FaCheck className="text-emerald-500 text-[10px]" /> Police Checked Cleaners
           </span>
           <span className="flex items-center gap-1.5">
-            <FaCheck className="text-emerald-500 text-[10px]" /> $10M Insured
+            <FaCheck className="text-emerald-500 text-[10px]" /> $10M Liability Insured
           </span>
           <span className="flex items-center gap-1.5">
             <FaCheck className="text-emerald-500 text-[10px]" /> 100% Bond Guarantee

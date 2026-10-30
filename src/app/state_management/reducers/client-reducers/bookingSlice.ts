@@ -21,7 +21,7 @@ const defaultPricing = calculateCleaningPrice({
   serviceId: 'standard',
   bedrooms: 2,
   bathrooms: 1,
-  frequency: 'fortnightly',
+  frequency: 'once_off',
   extras: []
 });
 
@@ -30,17 +30,12 @@ const initialState: BookingState = {
   serviceId: 'standard',
   bedrooms: 2,
   bathrooms: 1,
-  frequency: 'fortnightly',
+  frequency: 'once_off',
   date: '',
   timeSlot: '09:00 AM - 12:00 PM',
   selectedExtras: [],
   customer: initialCustomer,
-  couponCode: '',
-  appliedDiscount: 0,
-  couponValid: false,
-  couponError: undefined,
   subtotal: defaultPricing.subtotal,
-  discountTotal: defaultPricing.totalSavings,
   taxGst: defaultPricing.taxGst,
   finalTotal: defaultPricing.finalTotal,
   status: 'idle',
@@ -49,23 +44,6 @@ const initialState: BookingState = {
   error: undefined
 };
 
-// Async thunk for validating coupon code via mock API
-export const validateCouponThunk = createAsyncThunk(
-  'booking/validateCoupon',
-  async (couponCode: string, { rejectWithValue }) => {
-    try {
-      const response = await mockApiClient.validateCoupon(couponCode);
-      if (!response.valid) {
-        return rejectWithValue(response.message);
-      }
-      return { couponCode, message: response.message };
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Error validating coupon');
-    }
-  }
-);
-
-// Async thunk for submitting the booking via mock API
 export const submitBookingThunk = createAsyncThunk(
   'booking/submitBooking',
   async (_, { getState, rejectWithValue }) => {
@@ -134,39 +112,11 @@ export const bookingSlice = createSlice({
     setCustomer: (state, action: PayloadAction<BookingCustomer>) => {
       state.customer = action.payload;
     },
-    setCouponCode: (state, action: PayloadAction<string>) => {
-      state.couponCode = action.payload;
-      state.couponError = undefined;
-    },
-    removeCoupon: (state) => {
-      state.couponCode = '';
-      state.couponValid = false;
-      state.appliedDiscount = 0;
-      state.couponError = undefined;
-      recalculate(state);
-    },
     resetBooking: () => {
       return initialState;
     }
   },
   extraReducers: (builder) => {
-    // Validate Coupon
-    builder.addCase(validateCouponThunk.pending, (state) => {
-      state.couponError = undefined;
-    });
-    builder.addCase(validateCouponThunk.fulfilled, (state, action) => {
-      state.couponValid = true;
-      state.couponCode = action.payload.couponCode;
-      state.couponError = undefined;
-      recalculate(state);
-    });
-    builder.addCase(validateCouponThunk.rejected, (state, action) => {
-      state.couponValid = false;
-      state.couponError = (action.payload as string) || 'Invalid coupon code';
-      recalculate(state);
-    });
-
-    // Submit Booking
     builder.addCase(submitBookingThunk.pending, (state) => {
       state.status = 'submitting';
       state.error = undefined;
@@ -190,13 +140,10 @@ function recalculate(state: BookingState) {
     bedrooms: state.bedrooms,
     bathrooms: state.bathrooms,
     frequency: state.frequency,
-    extras: state.selectedExtras,
-    couponCode: state.couponValid ? state.couponCode : undefined
+    extras: state.selectedExtras
   });
 
   state.subtotal = calc.subtotal;
-  state.discountTotal = calc.totalSavings;
-  state.appliedDiscount = calc.couponDiscount;
   state.taxGst = calc.taxGst;
   state.finalTotal = calc.finalTotal;
 }
@@ -213,8 +160,6 @@ export const {
   setSchedule,
   updateCustomerField,
   setCustomer,
-  setCouponCode,
-  removeCoupon,
   resetBooking
 } = bookingSlice.actions;
 

@@ -9,11 +9,6 @@ import {
   StaffAccount
 } from '../state_management/types';
 
-// ==========================================
-// CORE STREAMLINED CLEANING SERVICES
-// 4 Focused essential services for simple startup model
-// ==========================================
-
 export const DUMMY_SERVICES: CleaningService[] = [
   {
     id: 'standard',
@@ -24,8 +19,8 @@ export const DUMMY_SERVICES: CleaningService[] = [
     longDesc: 'Our Standard Clean keeps your home consistently fresh. Experienced, police-checked cleaners arrive with professional supplies and HEPA vacuums, systematically refreshing every room.',
     category: 'residential',
     basePrice: 130,
-    priceNote: 'From $130 (1 bed / 1 bath)',
-    badge: 'Popular',
+    priceNote: '$130 flat base',
+    badge: 'Standard',
     popular: true,
     estimatedHours: '2.5 - 3.5 hrs',
     heroImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
@@ -61,7 +56,7 @@ export const DUMMY_SERVICES: CleaningService[] = [
     longDesc: 'When your home needs a reset, our Deep Clean goes deeper. We wash skirting boards, door frames, light switches, limescale, and vacuum behind moveable furniture.',
     category: 'residential',
     basePrice: 240,
-    priceNote: 'From $240 (1 bed / 1 bath)',
+    priceNote: '$240 flat base',
     badge: 'Deep Detail',
     popular: false,
     estimatedHours: '4 - 6 hrs',
@@ -98,8 +93,8 @@ export const DUMMY_SERVICES: CleaningService[] = [
     longDesc: 'Moving out is stressful enough. Our Vacate Clean meets rigorous property inspection standards. If your property manager flags any cleaning item, we return free of charge.',
     category: 'residential',
     basePrice: 360,
-    priceNote: 'From $360 (Bond Guarantee)',
-    badge: '100% Bond Guarantee',
+    priceNote: '$360 flat base',
+    badge: 'Bond Clean',
     popular: true,
     estimatedHours: '5 - 8 hrs',
     heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
@@ -136,8 +131,8 @@ export const DUMMY_SERVICES: CleaningService[] = [
     longDesc: 'Create a clean, healthy workplace for your team and visitors. Flexible scheduling with vetted cleaners, tailored to your office layout.',
     category: 'commercial',
     basePrice: 180,
-    priceNote: 'From $180 per visit',
-    badge: 'Workplaces',
+    priceNote: '$180 flat base',
+    badge: 'Workplace',
     popular: false,
     estimatedHours: '3 - 5 hrs',
     heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
@@ -179,29 +174,22 @@ export const FREQUENCY_OPTIONS: FrequencyOption[] = [
   {
     id: 'once_off',
     name: 'One-Time Clean',
-    discountPercentage: 0,
-    description: 'Pay once with zero commitment'
+    description: 'Single booking'
   },
   {
     id: 'weekly',
     name: 'Weekly Clean',
-    discountPercentage: 15,
-    badge: '15% OFF',
-    description: 'Effortless continuous cleanliness'
+    description: 'Every 7 days'
   },
   {
     id: 'fortnightly',
     name: 'Fortnightly',
-    discountPercentage: 10,
-    badge: '10% OFF',
-    description: 'Most popular option for busy homes'
+    description: 'Every 2 weeks'
   },
   {
     id: 'monthly',
     name: 'Every 4 Weeks',
-    discountPercentage: 5,
-    badge: '5% OFF',
-    description: 'Monthly thorough reset'
+    description: 'Monthly schedule'
   }
 ];
 
@@ -219,16 +207,6 @@ export const DUMMY_SUBURBS: SuburbCoverage[] = [
   { postcode: '6050', name: 'Mount Lawley', region: 'Central Perth', available: true, nextAvailableSlot: 'Tomorrow, 1:30 PM' },
   { postcode: '6100', name: 'Victoria Park', region: 'South Perth', available: true, nextAvailableSlot: 'Tomorrow, 10:00 AM' }
 ];
-
-export const VALID_COUPONS: Record<string, { discountPercent?: number; discountFixed?: number; description: string }> = {
-  KLEAN15: { discountPercent: 15, description: '15% Off Your Clean' },
-  FIRST20: { discountFixed: 20, description: '$20 Off First Booking' },
-  PERTH10: { discountPercent: 10, description: '10% Perth Welcome Discount' }
-};
-
-// ==========================================
-// MOCK DATA FOR ADMIN & SUPER ADMIN PORTAL
-// ==========================================
 
 export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
   {
@@ -343,7 +321,7 @@ export const INITIAL_PORTAL_BOOKINGS: DashboardBooking[] = [
 ];
 
 // ==========================================
-// CALCULATE CLEANING PRICE
+// CALCULATE CLEANING PRICE (Straight Flat Rate, Zero Discounts)
 // ==========================================
 
 export function calculateCleaningPrice(params: {
@@ -352,7 +330,6 @@ export function calculateCleaningPrice(params: {
   bathrooms: number;
   frequency: CleanFrequency;
   extras: string[];
-  couponCode?: string;
 }) {
   const service = DUMMY_SERVICES.find(s => s.id === params.serviceId) || DUMMY_SERVICES[0];
   
@@ -371,27 +348,8 @@ export function calculateCleaningPrice(params: {
     if (item) extrasCost += item.price;
   });
   
-  const rawSubtotal = baseServiceCost + extrasCost;
-  
-  const freq = FREQUENCY_OPTIONS.find(f => f.id === params.frequency) || FREQUENCY_OPTIONS[0];
-  const freqDiscountAmount = Math.round((rawSubtotal * freq.discountPercentage) / 100);
-  
-  const discountedSubtotal = rawSubtotal - freqDiscountAmount;
-  
-  let couponDiscount = 0;
-  if (params.couponCode && VALID_COUPONS[params.couponCode.toUpperCase()]) {
-    const coupon = VALID_COUPONS[params.couponCode.toUpperCase()];
-    if (coupon.discountPercent) {
-      couponDiscount = Math.round((discountedSubtotal * coupon.discountPercent) / 100);
-    } else if (coupon.discountFixed) {
-      couponDiscount = Math.min(discountedSubtotal, coupon.discountFixed);
-    }
-  }
-  
-  const finalSubtotal = Math.max(50, discountedSubtotal - couponDiscount);
-  const totalSavings = freqDiscountAmount + couponDiscount;
-  
-  const gstPortion = Math.round((finalSubtotal / 11) * 100) / 100;
+  const totalCost = baseServiceCost + extrasCost;
+  const gstPortion = Math.round((totalCost / 11) * 100) / 100;
   
   const baseHours = params.serviceId === 'vacate' ? 4.5 : params.serviceId === 'deep' ? 3.5 : 2.5;
   const roomHours = (extraBeds * 0.4) + (extraBaths * 0.5);
@@ -400,57 +358,22 @@ export function calculateCleaningPrice(params: {
   return {
     baseRate: baseServiceCost,
     extrasTotal: extrasCost,
-    frequencyDiscount: freqDiscountAmount,
-    couponDiscount,
-    totalSavings,
-    subtotal: rawSubtotal,
+    subtotal: totalCost,
     taxGst: gstPortion,
-    finalTotal: finalSubtotal,
+    finalTotal: totalCost,
     estimatedHours: totalHours
   };
 }
 
-// ==========================================
-// MOCK CLIENT API SERVICE
-// ==========================================
-
 export const mockApiClient = {
   async getServices(): Promise<CleaningService[]> {
-    await new Promise(r => setTimeout(r, 150));
+    await new Promise(r => setTimeout(r, 100));
     return DUMMY_SERVICES;
   },
 
   async getServiceBySlug(slug: string): Promise<CleaningService | null> {
-    await new Promise(r => setTimeout(r, 100));
+    await new Promise(r => setTimeout(r, 80));
     return DUMMY_SERVICES.find(s => s.slug === slug) || null;
-  },
-
-  async validateCoupon(code: string): Promise<{ valid: boolean; discountText?: string; message: string }> {
-    await new Promise(r => setTimeout(r, 150));
-    const normalized = code.trim().toUpperCase();
-    if (VALID_COUPONS[normalized]) {
-      return {
-        valid: true,
-        discountText: VALID_COUPONS[normalized].description,
-        message: `Coupon "${normalized}" applied successfully!`
-      };
-    }
-    return {
-      valid: false,
-      message: 'Invalid code. Try "KLEAN15"'
-    };
-  },
-
-  async checkSuburbCoverage(query: string): Promise<{ found: boolean; suburb?: SuburbCoverage }> {
-    await new Promise(r => setTimeout(r, 150));
-    const term = query.toLowerCase().trim();
-    const match = DUMMY_SUBURBS.find(s => 
-      s.postcode === term || s.name.toLowerCase().includes(term)
-    );
-    if (match) {
-      return { found: true, suburb: match };
-    }
-    return { found: false };
   },
 
   async submitBooking(bookingPayload: Partial<BookingState>): Promise<{
@@ -459,7 +382,7 @@ export const mockApiClient = {
     message: string;
     confirmationData: any;
   }> {
-    await new Promise(r => setTimeout(r, 500));
+    await new Promise(r => setTimeout(r, 400));
     const randomRef = 'KLX-' + Math.floor(10000 + Math.random() * 90000);
     const serviceName = DUMMY_SERVICES.find(s => s.id === bookingPayload.serviceId)?.title || 'Standard Home Clean';
 

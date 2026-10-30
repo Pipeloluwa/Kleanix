@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { useAppDispatch } from '@/app/state_management/hooks';
-import { openQuoteModal } from '@/app/state_management/reducers/client-reducers/uiSlice';
 import LogoComponent from './LogoComponent';
 import {
   FaPhoneAlt,
@@ -15,7 +13,6 @@ import {
 
 export const NavBarComponent = () => {
   const pathname = usePathname();
-  const dispatch = useAppDispatch();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -31,7 +28,6 @@ export const NavBarComponent = () => {
 
   const closeMobile = () => setMobileMenuOpen(false);
 
-  // Common interactive link styles: clean, no harsh browser focus outlines, styled active states
   const linkBaseClasses =
     "px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-150 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 select-none active:scale-[0.98]";
 
@@ -45,7 +41,7 @@ export const NavBarComponent = () => {
             <LogoComponent />
           </div>
 
-          {/* Simple Clean Navigation */}
+          {/* Clean Navigation */}
           <div className="hidden md:flex items-center gap-2 text-slate-700">
             <Link
               href="/services"
@@ -104,13 +100,14 @@ export const NavBarComponent = () => {
           </div>
 
           {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <button
-              onClick={() => dispatch(openQuoteModal())}
-              className="text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 px-3.5 py-2 rounded-xl transition-all outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 active:scale-95"
+          <div className="hidden sm:flex items-center gap-3">
+            <a
+              href="tel:1300346034"
+              className="text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-2 transition-colors flex items-center gap-1.5"
             >
-              Quote
-            </button>
+              <FaPhoneAlt className="text-sky-600 text-[10px]" />
+              <span>1300 34 60 34</span>
+            </a>
 
             <Link
               href="/book"
