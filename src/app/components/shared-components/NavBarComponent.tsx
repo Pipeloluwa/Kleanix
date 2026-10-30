@@ -155,12 +155,18 @@ export const NavBarComponent = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 w-1/2 min-w-[200px] max-w-[280px] bg-white shadow-2xl flex flex-col z-50 p-4 space-y-3"
+              className="fixed inset-y-0 right-0 w-[70vw] max-w-xs bg-white shadow-2xl flex flex-col z-50 p-5 space-y-4"
             >
-              <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                <LogoComponent size="sm" />
-                <button onClick={closeMobile} className="p-1 text-slate-500 outline-none">
-                  <FaTimes className="text-base" />
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                <span className="font-black text-lg tracking-tight text-slate-900">
+                  KLEAN<span className="text-sky-600">IX</span>
+                </span>
+                <button
+                  onClick={closeMobile}
+                  className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 outline-none flex items-center justify-center"
+                  aria-label="Close menu"
+                >
+                  <FaTimes className="text-lg" />
                 </button>
               </div>
 
