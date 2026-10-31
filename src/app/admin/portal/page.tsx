@@ -54,7 +54,7 @@ export default function AdminPortalPage() {
     role: 'cleaner' as StaffRole,
     suburbAssigned: '',
     policeCheckVerified: true,
-    insuranceVerified: true
+    trainingVerified: true
   });
   const [profileNotice, setProfileNotice] = useState<string | null>(null);
 
@@ -138,7 +138,7 @@ export default function AdminPortalPage() {
         role: 'cleaner',
         suburbAssigned: '',
         policeCheckVerified: true,
-        insuranceVerified: true
+        trainingVerified: true
       });
     }, 800);
   };
@@ -152,7 +152,7 @@ export default function AdminPortalPage() {
       role: staff.role,
       suburbAssigned: staff.suburbAssigned || '',
       policeCheckVerified: staff.policeCheckVerified,
-      insuranceVerified: staff.insuranceVerified
+      trainingVerified: staff.trainingVerified
     });
     setShowProfileModal(true);
   };
@@ -308,7 +308,7 @@ export default function AdminPortalPage() {
                   role: 'cleaner',
                   suburbAssigned: '',
                   policeCheckVerified: true,
-                  insuranceVerified: true
+                  trainingVerified: true
                 });
                 setShowProfileModal(true);
               }}

@@ -39,7 +39,7 @@ const LogoComponent: React.FC<LogoProps> = ({ lightMode = false, size = 'md' }) 
           </span>
         </div>
         <span className={`text-[10px] font-semibold tracking-wider uppercase ${lightMode ? 'text-sky-200' : 'text-slate-500'}`}>
-          Perth&apos;s Clean Tech Platform
+          Home & Office Cleaning
         </span>
       </div>
     </Link>

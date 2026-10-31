@@ -86,13 +86,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { num: '01', title: 'Identity & Right to Work', desc: '100-point Australian ID verification and visa validity check.' },
-              { num: '02', title: 'National Police Check', desc: 'Zero criminal conviction history clearance verified by WA authorities.' },
-              { num: '03', title: 'Practical Assessment', desc: 'In-person trial evaluating technique, speed, and safety protocols.' },
-              { num: '04', title: '$10M Insurance Bond', desc: 'Covered under our public liability policy for ultimate property protection.' },
-              { num: '05', title: 'Ongoing Quality Audits', desc: 'Cleaners must maintain at least a 4.8-star rating to remain active.' }
+              { num: '02', title: 'National Police Check', desc: 'Zero criminal conviction history clearance verified by Australian authorities.' },
+              { num: '03', title: 'Practical Assessment', desc: 'In-person trial evaluating technique, speed, and sanitisation standards.' },
+              { num: '04', title: 'Quality Audits', desc: 'Regular supervisor inspections ensuring high standards across all jobs.' }
             ].map((step, i) => (
               <div key={i} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3">
                 <span className="text-3xl font-black text-sky-500 font-mono">{step.num}</span>

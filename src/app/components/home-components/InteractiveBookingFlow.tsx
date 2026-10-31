@@ -876,7 +876,7 @@ export const InteractiveBookingFlow = () => {
                 <FaCheckCircle className="text-emerald-400" /> 100% Bond Back REIWA Guarantee
               </p>
               <p className="flex items-center gap-1.5 text-slate-300">
-                <FaShieldAlt className="text-sky-400" /> Insured up to $10,000,000 AUD
+                <FaShieldAlt className="text-sky-400" /> All Supplies & Equipment Included
               </p>
             </div>
           </div>

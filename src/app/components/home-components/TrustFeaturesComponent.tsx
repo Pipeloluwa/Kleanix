@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { FaUserCheck, FaAward, FaShieldAlt, FaCalendarCheck } from 'react-icons/fa';
+import { FaUserCheck, FaAward, FaLeaf, FaCalendarCheck } from 'react-icons/fa';
 
 const FEATURES = [
   {
@@ -9,9 +9,9 @@ const FEATURES = [
     desc: 'National police check and identity verified before stepping into your home.'
   },
   {
-    icon: FaShieldAlt,
-    title: '$10M Insurance',
-    desc: 'Comprehensive public liability insurance covers every booking.'
+    icon: FaLeaf,
+    title: 'Eco-Friendly Supplies',
+    desc: 'Commercial-grade, non-toxic products and HEPA filtration provided with every clean.'
   },
   {
     icon: FaAward,

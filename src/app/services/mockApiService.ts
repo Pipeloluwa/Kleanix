@@ -217,7 +217,7 @@ export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
     role: 'superadmin',
     status: 'active',
     policeCheckVerified: true,
-    insuranceVerified: true,
+    trainingVerified: true,
     joinedDate: 'Jan 2024',
     jobsCompleted: 0
   },
@@ -229,7 +229,7 @@ export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
     role: 'admin',
     status: 'active',
     policeCheckVerified: true,
-    insuranceVerified: true,
+    trainingVerified: true,
     joinedDate: 'Mar 2024',
     jobsCompleted: 0
   },
@@ -242,7 +242,7 @@ export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
     status: 'active',
     suburbAssigned: 'South Perth & CBD',
     policeCheckVerified: true,
-    insuranceVerified: true,
+    trainingVerified: true,
     joinedDate: 'Feb 2024',
     jobsCompleted: 48
   },
@@ -255,7 +255,7 @@ export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
     status: 'active',
     suburbAssigned: 'Western Suburbs',
     policeCheckVerified: true,
-    insuranceVerified: true,
+    trainingVerified: true,
     joinedDate: 'Apr 2024',
     jobsCompleted: 34
   }

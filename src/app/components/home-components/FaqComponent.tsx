@@ -30,8 +30,8 @@ const FAQS: FaqItem[] = [
     answer: 'Not at all! Our cleaners arrive fully equipped with commercial-grade vacuums featuring HEPA filtration, microfiber cloths, extension poles, mop systems, and hospital-grade eco-friendly cleaning detergents. If you have specific specialty products you prefer us to use on particular marble or timber surfaces, simply let us know.'
   },
   {
-    question: 'Are your cleaners police-checked and insured?',
-    answer: 'Yes, absolutely 100%. Every professional on the Kleanix platform has completed a comprehensive National Police History Check, right-to-work verification, and identity clearance. In addition, every job is covered by our $10,000,000 AUD Public Liability Insurance policy.'
+    question: 'Are your cleaners vetted and background checked?',
+    answer: 'Yes, absolutely 100%. Every professional on the Kleanix platform has completed a comprehensive National Police History Check, right-to-work verification, and identity clearance before undertaking any booking.'
   },
   {
     question: 'How does your 100% Bond Back Guarantee work for Vacate Cleans?',

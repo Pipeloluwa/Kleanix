@@ -17,7 +17,7 @@ export default function SuburbsPage() {
             Perth Suburbs We Service
           </h1>
           <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto">
-            Our police-checked, insured cleaners service homes and offices across all metropolitan Perth zones.
+            Our police-checked, professional cleaners service homes and offices across all metropolitan Perth zones.
           </p>
         </div>
       </div>

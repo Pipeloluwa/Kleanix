@@ -103,7 +103,7 @@ export interface StaffAccount {
   status: 'active' | 'suspended';
   suburbAssigned?: string;
   policeCheckVerified: boolean;
-  insuranceVerified: boolean;
+  trainingVerified: boolean;
   joinedDate: string;
   jobsCompleted?: number;
   passwordHash?: string;

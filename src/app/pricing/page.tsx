@@ -18,7 +18,7 @@ export default function PricingPage() {
             Clear, Upfront Rates
           </h1>
           <p className="text-slate-600 text-xs sm:text-sm">
-            All prices include 10% Australian GST, eco-friendly supplies, and full insurance. No travel fees or parking surcharges.
+            All prices include 10% Australian GST and commercial-grade eco-friendly supplies. No travel fees or parking surcharges.
           </p>
         </div>
 

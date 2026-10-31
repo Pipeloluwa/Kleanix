@@ -151,13 +151,13 @@ export const HeroComponent = () => {
           </div>
         </motion.div>
 
-        {/* 3 Simple highlights */}
+        {/* Simple highlights */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-slate-500 font-medium">
           <span className="flex items-center gap-1.5">
             <FaCheck className="text-emerald-500 text-[10px]" /> Police Checked Cleaners
           </span>
           <span className="flex items-center gap-1.5">
-            <FaCheck className="text-emerald-500 text-[10px]" /> $10M Liability Insured
+            <FaCheck className="text-emerald-500 text-[10px]" /> Eco-Friendly Supplies
           </span>
           <span className="flex items-center gap-1.5">
             <FaCheck className="text-emerald-500 text-[10px]" /> 100% Bond Guarantee

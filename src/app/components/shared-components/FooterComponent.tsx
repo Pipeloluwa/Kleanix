@@ -42,7 +42,7 @@ export const FooterComponent = () => {
           <div>
             <p className="font-bold text-white uppercase text-[11px] mb-2 tracking-wider">Standard</p>
             <p className="text-slate-400 leading-relaxed text-xs">
-              Every clean backed by national police background checks, $10M public liability insurance, and 100% satisfaction re-clean promise.
+              Every clean backed by national police background checks, eco-friendly supplies, and 100% satisfaction re-clean promise.
             </p>
           </div>
         </div>

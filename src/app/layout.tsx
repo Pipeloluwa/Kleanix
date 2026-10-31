@@ -10,8 +10,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Kleanix | Perth's Premier Home & Commercial Cleaning Platform",
-  description: "Experience premium home, office, and vacate cleaning in Perth with Kleanix. Fully insured, police-checked cleaners with a 100% Bond Back Guarantee. Instant online quotes and booking.",
+  title: "Kleanix | Reliable Home & Commercial Cleaning in Perth",
+  description: "Simple, reliable home, office, and vacate cleaning in Perth with Kleanix. Vetted, police-checked cleaners with a 100% Bond Back Guarantee.",
   keywords: ["cleaning perth", "home cleaning perth", "vacate cleaning perth", "bond cleaning", "commercial cleaning perth", "kleanix"],
   authors: [{ name: "Kleanix Platform" }]
 };
